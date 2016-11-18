@@ -1,3 +1,5 @@
+# Template Recipient Language #
+
 Template Recipient Language (TRL) is a powerful query language that allows users to define and manipulate complex telegram mailing lists based on a variety of criteria, such as current region, WA membership and World Census statistics.
 
 ## Components ##
