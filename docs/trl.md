@@ -33,7 +33,7 @@ Commands are of the form `<action> <primitive or group>;`. The available actions
 * remove (`-`): Removes the recipients specified by the primitive or group to the list of nations of the current group (e.g. `-regions [the Pacific];`, which removes all nations from the Pacific from the current group);
 * limit (`/`): Removes all nations from the current group that are not specified by the primitive or group (e.g. `/wa [members];` removes all nations from the current group if they are not World Assembly members).
 
-Commands must be terminated with a semicolon; this is not optional. However, Command actions are optional; the default action is add if none is specified.
+Commands must be terminated with a semicolon; this is not optional. However, command actions are optional; the default action is add if none is specified.
 
 ### Groups ###
 
