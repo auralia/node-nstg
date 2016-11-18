@@ -25,7 +25,7 @@ You can also build nstg from source using Gulp. There are two main targets:
 `prod` and `dev`. The only difference between them is that `dev` includes
 source maps. There is also a `docs` target to generate documentation.
 
-Consult [the documentation](https://github.com/auralia/node-nstg) 
+Consult [the documentation](https://auralia.github.io/node-nstg/) 
 for more information on API structure and methods, or 
 [this page](https://github.com/auralia/node-nstg/blob/master/docs/trl.md)
 for more information on TRL.
