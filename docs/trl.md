@@ -10,7 +10,7 @@ TRL strings are made up of three key components: primitives, commands, and group
 
 A primitive specifies a particular group of nations based on certain criteria. These criteria can be something as simple as a nation's name to something as complex as whether or not a nation's region has a particular tag.
 
-Primitives are of the form <category> [<argument>, <argument>, ...]. The available categories are:
+Primitives are of the form `<category> [<argument>, <argument>, ...]`. The available categories are:
 
 * **nations**: Represents a simple list of nations (e.g. `nations [Auralia, Railana]`);
 * **regions**: Represents all of the nations in a particular region or regions (e.g. `regions [the South Pacific]`);
