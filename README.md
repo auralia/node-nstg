@@ -19,15 +19,15 @@ nstg features the following:
 
 ## Usage ##
 
-You can install nstg using npm: `npm install nsapi`.
+You can install nstg using npm: `npm install nstg`.
 
 You can also build nstg from source using Gulp. There are two main targets: 
 `prod` and `dev`. The only difference between them is that `dev` includes
 source maps. There is also a `docs` target to generate documentation.
 
-Consult [the documentation]() 
+Consult [the documentation](https://github.com/auralia/node-nstg) 
 for more information on API structure and methods, or 
-[this page](https://github.com/auralia/node-nstg/wiki/Template-Recipient-Language)
+[this page](https://github.com/auralia/node-nstg/blob/master/docs/trl.md)
 for more information on TRL.
 
 ## Examples ##
