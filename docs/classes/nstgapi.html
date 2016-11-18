@@ -100,7 +100,8 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="nstgapi.html#_blocknewtelegrams" class="tsd-kind-icon">_block<wbr>New<wbr>Telegrams</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="nstgapi.html#_cleanup" class="tsd-kind-icon">_cleanup</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="nstgapi.html#_clientkey" class="tsd-kind-icon">_client<wbr>Key</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="nstgapi.html#_continuousdelaymillis" class="tsd-kind-icon">_continuous<wbr>Delay<wbr>Millis</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="nstgapi.html#_continuouscacheoverrideinfo" class="tsd-kind-icon">_continuous<wbr>Cache<wbr>Override<wbr>Info</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="nstgapi.html#_continuousdelaysecs" class="tsd-kind-icon">_continuous<wbr>Delay<wbr>Secs</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="nstgapi.html#_jobidcounter" class="tsd-kind-icon">_job<wbr>IdCounter</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="nstgapi.html#_onjobcomplete" class="tsd-kind-icon">_on<wbr>Job<wbr>Complete</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="nstgapi.html#_onjobstart" class="tsd-kind-icon">_on<wbr>Job<wbr>Start</a></li>
@@ -120,7 +121,8 @@
 								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="nstgapi.html#blockexistingtelegrams" class="tsd-kind-icon">block<wbr>Existing<wbr>Telegrams</a></li>
 								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="nstgapi.html#blocknewtelegrams" class="tsd-kind-icon">block<wbr>New<wbr>Telegrams</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="nstgapi.html#clientkey" class="tsd-kind-icon">client<wbr>Key</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="nstgapi.html#continuousdelaymillis" class="tsd-kind-icon">continuous<wbr>Delay<wbr>Millis</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="nstgapi.html#continuouscacheoverrideinfo" class="tsd-kind-icon">continuous<wbr>Cache<wbr>Override<wbr>Info</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="nstgapi.html#continuousdelaysecs" class="tsd-kind-icon">continuous<wbr>Delay<wbr>Secs</a></li>
 								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="nstgapi.html#onjobcomplete" class="tsd-kind-icon">on<wbr>Job<wbr>Complete</a></li>
 								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="nstgapi.html#onjobstart" class="tsd-kind-icon">on<wbr>Job<wbr>Start</a></li>
 								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="nstgapi.html#ontgfailure" class="tsd-kind-icon">on<wbr>TgFailure</a></li>
@@ -136,6 +138,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="nstgapi.html#cleanup" class="tsd-kind-icon">cleanup</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="nstgapi.html#clearqueue" class="tsd-kind-icon">clear<wbr>Queue</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="nstgapi.html#createjob" class="tsd-kind-icon">create<wbr>Job</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="nstgapi.html#evaluatetrl" class="tsd-kind-icon">evaluate<wbr>Trl</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="nstgapi.html#getjob" class="tsd-kind-icon">get<wbr>Job</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="nstgapi.html#jobcomplete" class="tsd-kind-icon">job<wbr>Complete</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="nstgapi.html#recipientfailure" class="tsd-kind-icon">recipient<wbr>Failure</a></li>
@@ -154,13 +157,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>NsTg<wbr>Api<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, clientKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, continuousDelayMillis<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="nstgapi.html" class="tsd-signature-type">NsTgApi</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>NsTg<wbr>Api<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, clientKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, continuousDelaySecs<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, continuousCacheOverrideInfo<span class="tsd-signature-symbol">?: </span><a href="cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="nstgapi.html" class="tsd-signature-type">NsTgApi</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:147</li>
+									<li>Defined in api.ts:201</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -188,12 +191,24 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> continuousDelayMillis: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;180000</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> continuousDelaySecs: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;60</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
-											<p>The delay between re-evaluations of the
-												TRL string for a
-											continuous job. Defaults to 180000.</p>
+											<p>The delay between re-evaluations of the TRL
+												string for a continuous job in seconds.
+											Defaults to 60.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> continuousCacheOverrideInfo: <a href="cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a><span class="tsd-signature-symbol"> =&nbsp;{overrideRegions: true,overrideTags: true,overrideWa: true,overrideNew: true,overrideRefounded: true,overrideCategories: false,overrideCensus: false}</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Rules for when to override API caching
+												when re-evaluating a TRL string in
+												continuous mode. By default, all
+												primitives override caches except
+											categories and census.</p>
 										</div>
 									</div>
 								</li>
@@ -211,7 +226,7 @@
 					<div class="tsd-signature tsd-kind-icon">_api<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">NsApi</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in api.ts:127</li>
+							<li>Defined in api.ts:180</li>
 						</ul>
 					</aside>
 				</section>
@@ -221,7 +236,7 @@
 					<div class="tsd-signature tsd-kind-icon">_block<wbr>Existing<wbr>Telegrams<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in api.ts:143</li>
+							<li>Defined in api.ts:197</li>
 						</ul>
 					</aside>
 				</section>
@@ -231,7 +246,7 @@
 					<div class="tsd-signature tsd-kind-icon">_block<wbr>New<wbr>Telegrams<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in api.ts:144</li>
+							<li>Defined in api.ts:198</li>
 						</ul>
 					</aside>
 				</section>
@@ -241,7 +256,7 @@
 					<div class="tsd-signature tsd-kind-icon">_cleanup<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in api.ts:145</li>
+							<li>Defined in api.ts:199</li>
 						</ul>
 					</aside>
 				</section>
@@ -251,17 +266,27 @@
 					<div class="tsd-signature tsd-kind-icon">_client<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in api.ts:128</li>
+							<li>Defined in api.ts:181</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_continuousdelaymillis" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _continuous<wbr>Delay<wbr>Millis</h3>
-					<div class="tsd-signature tsd-kind-icon">_continuous<wbr>Delay<wbr>Millis<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="_continuouscacheoverrideinfo" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _continuous<wbr>Cache<wbr>Override<wbr>Info</h3>
+					<div class="tsd-signature tsd-kind-icon">_continuous<wbr>Cache<wbr>Override<wbr>Info<span class="tsd-signature-symbol">:</span> <a href="cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in api.ts:130</li>
+							<li>Defined in api.ts:195</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_continuousdelaysecs" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _continuous<wbr>Delay<wbr>Secs</h3>
+					<div class="tsd-signature tsd-kind-icon">_continuous<wbr>Delay<wbr>Secs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in api.ts:194</li>
 						</ul>
 					</aside>
 				</section>
@@ -271,7 +296,7 @@
 					<div class="tsd-signature tsd-kind-icon">_job<wbr>IdCounter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in api.ts:147</li>
+							<li>Defined in api.ts:201</li>
 						</ul>
 					</aside>
 				</section>
@@ -281,7 +306,7 @@
 					<div class="tsd-signature tsd-kind-icon">_on<wbr>Job<wbr>Complete<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in api.ts:135</li>
+							<li>Defined in api.ts:186</li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -312,7 +337,7 @@
 					<div class="tsd-signature tsd-kind-icon">_on<wbr>Job<wbr>Start<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in api.ts:132</li>
+							<li>Defined in api.ts:183</li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -343,7 +368,7 @@
 					<div class="tsd-signature tsd-kind-icon">_on<wbr>TgFailure<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in api.ts:134</li>
+							<li>Defined in api.ts:185</li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -374,7 +399,7 @@
 					<div class="tsd-signature tsd-kind-icon">_on<wbr>TgSuccess<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in api.ts:133</li>
+							<li>Defined in api.ts:184</li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -405,7 +430,7 @@
 					<div class="tsd-signature tsd-kind-icon">_tg<wbr>Continuous<wbr>Interval<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in api.ts:140</li>
+							<li>Defined in api.ts:193</li>
 						</ul>
 					</aside>
 				</section>
@@ -415,7 +440,7 @@
 					<div class="tsd-signature tsd-kind-icon">_tg<wbr>InProgress<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in api.ts:141</li>
+							<li>Defined in api.ts:191</li>
 						</ul>
 					</aside>
 				</section>
@@ -425,7 +450,7 @@
 					<div class="tsd-signature tsd-kind-icon">_tg<wbr>Interval<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in api.ts:139</li>
+							<li>Defined in api.ts:190</li>
 						</ul>
 					</aside>
 				</section>
@@ -435,7 +460,7 @@
 					<div class="tsd-signature tsd-kind-icon">_tg<wbr>Jobs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in api.ts:137</li>
+							<li>Defined in api.ts:188</li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -453,7 +478,7 @@
 					<div class="tsd-signature tsd-kind-icon">_tg<wbr>Queue<span class="tsd-signature-symbol">:</span> <a href="../interfaces/recipient.html" class="tsd-signature-type">Recipient</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in api.ts:138</li>
+							<li>Defined in api.ts:189</li>
 						</ul>
 					</aside>
 				</section>
@@ -470,7 +495,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:230</li>
+									<li>Defined in api.ts:301</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -493,7 +518,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:327</li>
+									<li>Defined in api.ts:415</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -507,7 +532,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:338</li>
+									<li>Defined in api.ts:426</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -543,7 +568,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:346</li>
+									<li>Defined in api.ts:434</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -557,7 +582,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:357</li>
+									<li>Defined in api.ts:445</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -592,7 +617,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:237</li>
+									<li>Defined in api.ts:308</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -604,23 +629,67 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
-					<a name="continuousdelaymillis" class="tsd-anchor"></a>
-					<h3>continuous<wbr>Delay<wbr>Millis</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> continuousDelayMillis<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
+					<a name="continuouscacheoverrideinfo" class="tsd-anchor"></a>
+					<h3>continuous<wbr>Cache<wbr>Override<wbr>Info</h3>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> continuousCacheOverrideInfo<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> continuousCacheOverrideInfo<span class="tsd-signature-symbol">(</span>continuousCacheOverrideInfo<span class="tsd-signature-symbol">: </span><a href="cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:245</li>
+									<li>Defined in api.ts:398</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Gets the delay between re-evaluations of the TRL
-									string for a continuous job.</p>
+									<p>Gets the rules associated with overriding API caching when
+									re-evaluating a TRL string in continuous mode.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:406</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the rules associated with overriding API caching when
+									re-evaluating a TRL string in continuous mode.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>continuousCacheOverrideInfo: <a href="cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="continuousdelaysecs" class="tsd-anchor"></a>
+					<h3>continuous<wbr>Delay<wbr>Secs</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> continuousDelaySecs<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:390</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the delay between re-evaluations of the TRL string for a continuous
+									job in seconds.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -638,7 +707,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:309</li>
+									<li>Defined in api.ts:372</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -673,7 +742,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:319</li>
+									<li>Defined in api.ts:382</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -724,7 +793,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:253</li>
+									<li>Defined in api.ts:316</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -756,7 +825,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:263</li>
+									<li>Defined in api.ts:326</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -809,7 +878,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:290</li>
+									<li>Defined in api.ts:353</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -844,7 +913,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:300</li>
+									<li>Defined in api.ts:363</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -895,7 +964,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:271</li>
+									<li>Defined in api.ts:334</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -930,7 +999,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:281</li>
+									<li>Defined in api.ts:344</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -980,7 +1049,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:364</li>
+									<li>Defined in api.ts:452</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1002,7 +1071,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:371</li>
+									<li>Defined in api.ts:459</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1027,7 +1096,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:416</li>
+									<li>Defined in api.ts:504</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1058,7 +1127,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:392</li>
+									<li>Defined in api.ts:480</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1083,7 +1152,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:378</li>
+									<li>Defined in api.ts:466</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1105,7 +1174,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:580</li>
+									<li>Defined in api.ts:599</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1146,6 +1215,39 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="evaluatetrl" class="tsd-anchor"></a>
+					<h3>evaluate<wbr>Trl</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">evaluate<wbr>Trl<span class="tsd-signature-symbol">(</span>trl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:530</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Parses and evaluates a TRL string.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>trl: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A TRL string.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise returning the nations represented by the specified TRL
+							string.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="getjob" class="tsd-anchor"></a>
 					<h3>get<wbr>Job</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1155,7 +1257,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:407</li>
+									<li>Defined in api.ts:495</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1190,7 +1292,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:558</li>
+									<li>Defined in api.ts:726</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1222,7 +1324,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:539</li>
+									<li>Defined in api.ts:707</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1260,7 +1362,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:520</li>
+									<li>Defined in api.ts:688</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1291,7 +1393,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:494</li>
+									<li>Defined in api.ts:635</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1322,7 +1424,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:482</li>
+									<li>Defined in api.ts:543</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1361,7 +1463,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:449</li>
+									<li>Defined in api.ts:565</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1421,6 +1523,9 @@
 					<li class=" tsd-kind-enum">
 						<a href="../enums/action.html" class="tsd-kind-icon">Action</a>
 					</li>
+					<li class=" tsd-kind-class">
+						<a href="cacheoverrideinfo.html" class="tsd-kind-icon">Cache<wbr>Override<wbr>Info</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
@@ -1445,7 +1550,10 @@
 								<a href="nstgapi.html#_clientkey" class="tsd-kind-icon">_client<wbr>Key</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="nstgapi.html#_continuousdelaymillis" class="tsd-kind-icon">_continuous<wbr>Delay<wbr>Millis</a>
+								<a href="nstgapi.html#_continuouscacheoverrideinfo" class="tsd-kind-icon">_continuous<wbr>Cache<wbr>Override<wbr>Info</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="nstgapi.html#_continuousdelaysecs" class="tsd-kind-icon">_continuous<wbr>Delay<wbr>Secs</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="nstgapi.html#_jobidcounter" class="tsd-kind-icon">_job<wbr>IdCounter</a>
@@ -1489,8 +1597,11 @@
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="nstgapi.html#clientkey" class="tsd-kind-icon">client<wbr>Key</a>
 							</li>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class">
+								<a href="nstgapi.html#continuouscacheoverrideinfo" class="tsd-kind-icon">continuous<wbr>Cache<wbr>Override<wbr>Info</a>
+							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
-								<a href="nstgapi.html#continuousdelaymillis" class="tsd-kind-icon">continuous<wbr>Delay<wbr>Millis</a>
+								<a href="nstgapi.html#continuousdelaysecs" class="tsd-kind-icon">continuous<wbr>Delay<wbr>Secs</a>
 							</li>
 							<li class=" tsd-kind-accessor tsd-parent-kind-class">
 								<a href="nstgapi.html#onjobcomplete" class="tsd-kind-icon">on<wbr>Job<wbr>Complete</a>
@@ -1523,6 +1634,9 @@
 								<a href="nstgapi.html#createjob" class="tsd-kind-icon">create<wbr>Job</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="nstgapi.html#evaluatetrl" class="tsd-kind-icon">evaluate<wbr>Trl</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="nstgapi.html#getjob" class="tsd-kind-icon">get<wbr>Job</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
@@ -1547,7 +1661,7 @@
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class tsd-is-not-exported">
+					<li class=" tsd-kind-class">
 						<a href="parseerror.html" class="tsd-kind-icon">Parse<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
@@ -1620,9 +1734,6 @@
 						<a href="../globals.html#getworldassemblymembers" class="tsd-kind-icon">get<wbr>World<wbr>Assembly<wbr>Members</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="../globals.html#makecachedrequest" class="tsd-kind-icon">make<wbr>Cached<wbr>Request</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="../globals.html#parsecommand" class="tsd-kind-icon">parse<wbr>Command</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
@@ -1631,7 +1742,7 @@
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="../globals.html#parseprimitive" class="tsd-kind-icon">parse<wbr>Primitive</a>
 					</li>
-					<li class=" tsd-kind-function">
+					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="../globals.html#parsetrl" class="tsd-kind-icon">parse<wbr>Trl</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">

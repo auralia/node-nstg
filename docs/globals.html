@@ -76,8 +76,9 @@
 						<section class="tsd-index-section ">
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-class"><a href="classes/cacheoverrideinfo.html" class="tsd-kind-icon">Cache<wbr>Override<wbr>Info</a></li>
 								<li class="tsd-kind-class"><a href="classes/nstgapi.html" class="tsd-kind-icon">Ns<wbr>TgApi</a></li>
-								<li class="tsd-kind-class tsd-is-not-exported"><a href="classes/parseerror.html" class="tsd-kind-icon">Parse<wbr>Error</a></li>
+								<li class="tsd-kind-class"><a href="classes/parseerror.html" class="tsd-kind-icon">Parse<wbr>Error</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -111,11 +112,10 @@
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#gettags" class="tsd-kind-icon">get<wbr>Tags</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#getworldassemblydelegates" class="tsd-kind-icon">get<wbr>World<wbr>Assembly<wbr>Delegates</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#getworldassemblymembers" class="tsd-kind-icon">get<wbr>World<wbr>Assembly<wbr>Members</a></li>
-								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#makecachedrequest" class="tsd-kind-icon">make<wbr>Cached<wbr>Request</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#parsecommand" class="tsd-kind-icon">parse<wbr>Command</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#parsegroup" class="tsd-kind-icon">parse<wbr>Group</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#parseprimitive" class="tsd-kind-icon">parse<wbr>Primitive</a></li>
-								<li class="tsd-kind-function"><a href="globals.html#parsetrl" class="tsd-kind-icon">parse<wbr>Trl</a></li>
+								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#parsetrl" class="tsd-kind-icon">parse<wbr>Trl</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#toid" class="tsd-kind-icon">to<wbr>Id</a></li>
 							</ul>
 						</section>
@@ -134,22 +134,39 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:252</li>
+									<li>Defined in trl.ts:529</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Evaluates the specified action with a list of the current nations in the
+										group and a list of the nations associated with the most recently processed
+									command.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>action: <a href="enums/action.html" class="tsd-signature-type">Action</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The specified action.</p>
+									</div>
 								</li>
 								<li>
 									<h5>nations: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The current nations in the group.</p>
+									</div>
 								</li>
 								<li>
 									<h5>newNations: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The nations associated with the current command.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+							<p>The new list of nations for the current group.</p>
 						</li>
 					</ul>
 				</section>
@@ -157,28 +174,51 @@
 					<a name="evaluatecommand" class="tsd-anchor"></a>
 					<h3>evaluate<wbr>Command</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">evaluate<wbr>Command<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, command<span class="tsd-signature-symbol">: </span><a href="interfaces/recipientcommand.html" class="tsd-signature-type">RecipientCommand</a>, nations<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">evaluate<wbr>Command<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, command<span class="tsd-signature-symbol">: </span><a href="interfaces/recipientcommand.html" class="tsd-signature-type">RecipientCommand</a>, nations<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, continuousCacheOverrideInfo<span class="tsd-signature-symbol">: </span><a href="classes/cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:239</li>
+									<li>Defined in trl.ts:353</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Evaluates the specified recipient command using the specified API.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>api: <span class="tsd-signature-type">NsApi</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The specified API.</p>
+									</div>
 								</li>
 								<li>
 									<h5>command: <a href="interfaces/recipientcommand.html" class="tsd-signature-type">RecipientCommand</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The specified recipient command.</p>
+									</div>
 								</li>
 								<li>
 									<h5>nations: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The list of nations in the current group.</p>
+									</div>
+								</li>
+								<li>
+									<h5>continuousCacheOverrideInfo: <a href="classes/cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Rules for when to override API caching
+											when re-evaluating a TRL string in
+										continuous mode.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise returning a new list of nations for the current group.</p>
 						</li>
 					</ul>
 				</section>
@@ -186,25 +226,46 @@
 					<a name="evaluategroup" class="tsd-anchor"></a>
 					<h3>evaluate<wbr>Group</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">evaluate<wbr>Group<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, commands<span class="tsd-signature-symbol">: </span><a href="interfaces/recipientcommand.html" class="tsd-signature-type">RecipientCommand</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">evaluate<wbr>Group<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, commands<span class="tsd-signature-symbol">: </span><a href="interfaces/recipientcommand.html" class="tsd-signature-type">RecipientCommand</a><span class="tsd-signature-symbol">[]</span>, continuousCacheOverrideInfo<span class="tsd-signature-symbol">: </span><a href="classes/cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:229</li>
+									<li>Defined in trl.ts:329</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Evaluates the specified group recipient commands using the specified API.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>api: <span class="tsd-signature-type">NsApi</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The specified API.</p>
+									</div>
 								</li>
 								<li>
 									<h5>commands: <a href="interfaces/recipientcommand.html" class="tsd-signature-type">RecipientCommand</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The specified recipient commands.</p>
+									</div>
+								</li>
+								<li>
+									<h5>continuousCacheOverrideInfo: <a href="classes/cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Rules for when to override API caching
+											when re-evaluating a TRL string in
+										continuous mode.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise returning the list of nations that the specified commands
+							evaluate to.</p>
 						</li>
 					</ul>
 				</section>
@@ -212,31 +273,58 @@
 					<a name="evaluateprimitive" class="tsd-anchor"></a>
 					<h3>evaluate<wbr>Primitive</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">evaluate<wbr>Primitive<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, primitive<span class="tsd-signature-symbol">: </span><a href="interfaces/recipientprimitive.html" class="tsd-signature-type">RecipientPrimitive</a>, action<span class="tsd-signature-symbol">: </span><a href="enums/action.html" class="tsd-signature-type">Action</a>, nations<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">evaluate<wbr>Primitive<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, primitive<span class="tsd-signature-symbol">: </span><a href="interfaces/recipientprimitive.html" class="tsd-signature-type">RecipientPrimitive</a>, action<span class="tsd-signature-symbol">: </span><a href="enums/action.html" class="tsd-signature-type">Action</a>, nations<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, continuousCacheOverrideInfo<span class="tsd-signature-symbol">: </span><a href="classes/cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:270</li>
+									<li>Defined in trl.ts:382</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Evaluates the specified primitive with the specified action using the
+									specified API.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>api: <span class="tsd-signature-type">NsApi</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The specified API.</p>
+									</div>
 								</li>
 								<li>
 									<h5>primitive: <a href="interfaces/recipientprimitive.html" class="tsd-signature-type">RecipientPrimitive</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The specified primitive.</p>
+									</div>
 								</li>
 								<li>
 									<h5>action: <a href="enums/action.html" class="tsd-signature-type">Action</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The specified action.</p>
+									</div>
 								</li>
 								<li>
 									<h5>nations: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The nations associated with the current group.</p>
+									</div>
+								</li>
+								<li>
+									<h5>continuousCacheOverrideInfo: <a href="classes/cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Rules for when to override API caching
+											when re-evaluating a TRL string in
+										continuous mode.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise returning a new list of nations for the current group.</p>
 						</li>
 					</ul>
 				</section>
@@ -244,25 +332,46 @@
 					<a name="evaluatetrl" class="tsd-anchor"></a>
 					<h3>evaluate<wbr>Trl</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">evaluate<wbr>Trl<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, commands<span class="tsd-signature-symbol">: </span><a href="interfaces/recipientcommand.html" class="tsd-signature-type">RecipientCommand</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">evaluate<wbr>Trl<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, commands<span class="tsd-signature-symbol">: </span><a href="interfaces/recipientcommand.html" class="tsd-signature-type">RecipientCommand</a><span class="tsd-signature-symbol">[]</span>, continuousCacheOverrideInfo<span class="tsd-signature-symbol">: </span><a href="classes/cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:222</li>
+									<li>Defined in trl.ts:308</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Evaluates the specified recipient commands using the specified API.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>api: <span class="tsd-signature-type">NsApi</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The specified API.</p>
+									</div>
 								</li>
 								<li>
 									<h5>commands: <a href="interfaces/recipientcommand.html" class="tsd-signature-type">RecipientCommand</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The specified recipient commands.</p>
+									</div>
+								</li>
+								<li>
+									<h5>continuousCacheOverrideInfo: <a href="classes/cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Rules for when to override API caching
+											when re-evaluating a TRL string in
+										continuous mode.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise returning the list of nations that the specified TRL string
+							evaluates to.</p>
 						</li>
 					</ul>
 				</section>
@@ -270,41 +379,43 @@
 					<a name="getcategory" class="tsd-anchor"></a>
 					<h3>get<wbr>Category</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Category<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, nation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, cache<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Category<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, nation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, overrideCache<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:436</li>
+									<li>Defined in trl.ts:729</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the category of the specified nation using the specified API.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>api: <span class="tsd-signature-type">NsApi</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The specified API.</p>
+									</div>
 								</li>
 								<li>
 									<h5>nation: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The specified nation.</p>
+									</div>
 								</li>
 								<li>
-									<h5>cache: <span class="tsd-signature-type">object</span></h5>
-									<ul class="tsd-parameters">
-										<li class="tsd-parameter-index-signature">
-											<h5><span class="tsd-signature-symbol">[</span>nation: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">object</span></h5>
-											<ul class="tsd-parameters">
-												<li class="tsd-parameter">
-													<h5>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h5>
-												</li>
-												<li class="tsd-parameter">
-													<h5>time<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-												</li>
-											</ul>
-										</li>
-									</ul>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> overrideCache: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Whether or not to override the cache for this request.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise returning the list of nations.</p>
 						</li>
 					</ul>
 				</section>
@@ -312,35 +423,50 @@
 					<a name="getcensusscore" class="tsd-anchor"></a>
 					<h3>get<wbr>Census<wbr>Score</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Census<wbr>Score<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, nation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, censusId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Census<wbr>Score<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, nation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, censusId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, overrideCache<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:460</li>
+									<li>Defined in trl.ts:747</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Gets the census score for the specified census ID for the specified nation.</p>
+									<p>Gets the score for the specified census ID for the specified nation using
+									the specified API.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>api: <span class="tsd-signature-type">NsApi</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The specified API.</p>
+									</div>
 								</li>
 								<li>
 									<h5>nation: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The specified nation.</p>
+									</div>
 								</li>
 								<li>
 									<h5>censusId: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>The specified census ID.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> overrideCache: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Whether or not to override the cache for this request.</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise returning the list of nations.</p>
 						</li>
 					</ul>
 				</section>
@@ -354,16 +480,25 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:357</li>
+									<li>Defined in trl.ts:554</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a list of nations.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>args: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The list of nations in raw form.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise returning the list of nations.</p>
 						</li>
 					</ul>
 				</section>
@@ -371,44 +506,18 @@
 					<a name="getnewnations" class="tsd-anchor"></a>
 					<h3>get<wbr>New<wbr>Nations</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>New<wbr>Nations<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, count<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>New<wbr>Nations<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, count<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, overrideCache<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:398</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>api: <span class="tsd-signature-type">NsApi</span></h5>
-								</li>
-								<li>
-									<h5>count: <span class="tsd-signature-type">number</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="getrecipients" class="tsd-anchor"></a>
-					<h3>get<wbr>Recipients</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Recipients<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, trl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in trl.ts:28</li>
+									<li>Defined in trl.ts:652</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Parses and evaluates a TRL string.</p>
+									<p>Gets the specified number of new nations using the specified API.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -416,18 +525,71 @@
 								<li>
 									<h5>api: <span class="tsd-signature-type">NsApi</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The NationStates API instance to use to evaluate the string.</p>
+										<p>The specified API.</p>
+									</div>
+								</li>
+								<li>
+									<h5>count: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The number of new nations to retrieve.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> overrideCache: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Whether or not to override the cache for this request.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise returning the list of nations.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="getrecipients" class="tsd-anchor"></a>
+					<h3>get<wbr>Recipients</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Recipients<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, trl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, continuousCacheOverrideInfo<span class="tsd-signature-symbol">?: </span><a href="classes/cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in trl.ts:124</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Parses and evaluates a TRL string using the specified API.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>api: <span class="tsd-signature-type">NsApi</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The specified API.</p>
 									</div>
 								</li>
 								<li>
 									<h5>trl: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The TRL string.</p>
+										<p>The specified TRL string.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> continuousCacheOverrideInfo: <a href="classes/cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Rules for when to override API caching
+											when re-evaluating a TRL string in
+										continuous mode.</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A promise returning the list of nations associated with the string.</p>
+							<p>A promise returning the nations represented by the specified TRL
+							string.</p>
 						</li>
 					</ul>
 				</section>
@@ -435,25 +597,43 @@
 					<a name="getrefoundednations" class="tsd-anchor"></a>
 					<h3>get<wbr>Refounded<wbr>Nations</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Refounded<wbr>Nations<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, count<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Refounded<wbr>Nations<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, count<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, overrideCache<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:415</li>
+									<li>Defined in trl.ts:690</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the specified number of refounded nations using the specified API.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>api: <span class="tsd-signature-type">NsApi</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The specified API.</p>
+									</div>
 								</li>
 								<li>
 									<h5>count: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The number of refounded nations to retrieve.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> overrideCache: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Whether or not to override the cache for this request.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise returning the list of nations.</p>
 						</li>
 					</ul>
 				</section>
@@ -461,25 +641,43 @@
 					<a name="getregions" class="tsd-anchor"></a>
 					<h3>get<wbr>Regions</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Regions<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Regions<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, overrideCache<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:361</li>
+									<li>Defined in trl.ts:567</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the nations in a list of regions using the specified API.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>api: <span class="tsd-signature-type">NsApi</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The specified API.</p>
+									</div>
 								</li>
 								<li>
 									<h5>args: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The list of regions.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> overrideCache: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Whether or not to override the cache for this request.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise returning the list of nations.</p>
 						</li>
 					</ul>
 				</section>
@@ -487,25 +685,44 @@
 					<a name="gettags" class="tsd-anchor"></a>
 					<h3>get<wbr>Tags</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Tags<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Tags<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, overrideCache<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:375</li>
+									<li>Defined in trl.ts:594</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the nations in all regions with the specified tags using the specified
+									API.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>api: <span class="tsd-signature-type">NsApi</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The specified API.</p>
+									</div>
 								</li>
 								<li>
 									<h5>args: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The list of tags.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> overrideCache: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Whether or not to override the cache for this request.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise returning the list of nations.</p>
 						</li>
 					</ul>
 				</section>
@@ -513,22 +730,37 @@
 					<a name="getworldassemblydelegates" class="tsd-anchor"></a>
 					<h3>get<wbr>World<wbr>Assembly<wbr>Delegates</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>World<wbr>Assembly<wbr>Delegates<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>World<wbr>Assembly<wbr>Delegates<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, overrideCache<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:390</li>
+									<li>Defined in trl.ts:631</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets all World Assembly delegates using the specified API.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>api: <span class="tsd-signature-type">NsApi</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The specified API.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> overrideCache: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Whether or not to override the cache for this request.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise returning the list of nations.</p>
 						</li>
 					</ul>
 				</section>
@@ -536,48 +768,37 @@
 					<a name="getworldassemblymembers" class="tsd-anchor"></a>
 					<h3>get<wbr>World<wbr>Assembly<wbr>Members</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>World<wbr>Assembly<wbr>Members<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>World<wbr>Assembly<wbr>Members<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, overrideCache<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:382</li>
+									<li>Defined in trl.ts:611</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets all World Assembly member states using the specified API.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>api: <span class="tsd-signature-type">NsApi</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The specified API.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> overrideCache: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Whether or not to override the cache for this request.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
-					<a name="makecachedrequest" class="tsd-anchor"></a>
-					<h3>make<wbr>Cached<wbr>Request</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">make<wbr>Cached<wbr>Request<span class="tsd-signature-symbol">(</span>func<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, cache<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in trl.ts:467</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>func: <span class="tsd-signature-type">any</span></h5>
-								</li>
-								<li>
-									<h5>cache: <span class="tsd-signature-type">any</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+							<p>A promise returning the list of nations.</p>
 						</li>
 					</ul>
 				</section>
@@ -591,19 +812,31 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:132</li>
+									<li>Defined in trl.ts:191</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Parses the specified command string into a recipient command.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>cxt: <a href="interfaces/parsecontext.html" class="tsd-signature-type">ParseContext</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The current parse context.</p>
+									</div>
 								</li>
 								<li>
 									<h5>position: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The position of the specified group.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="interfaces/recipientcommand.html" class="tsd-signature-type">RecipientCommand</a></h4>
+							<p>A recipient command.</p>
 						</li>
 					</ul>
 				</section>
@@ -617,19 +850,31 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:106</li>
+									<li>Defined in trl.ts:157</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Parses the specified group string into a list of recipient commands.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>cxt: <a href="interfaces/parsecontext.html" class="tsd-signature-type">ParseContext</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The current parse context.</p>
+									</div>
 								</li>
 								<li>
 									<h5>position: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The position of the specified group.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="interfaces/recipientcommand.html" class="tsd-signature-type">RecipientCommand</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>A list of recipient commands.</p>
 						</li>
 					</ul>
 				</section>
@@ -637,41 +882,58 @@
 					<a name="parseprimitive" class="tsd-anchor"></a>
 					<h3>parse<wbr>Primitive</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">parse<wbr>Primitive<span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="interfaces/parsecontext.html" class="tsd-signature-type">ParseContext</a>, position<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/recipientprimitive.html" class="tsd-signature-type">RecipientPrimitive</a></li>
+						<li class="tsd-signature tsd-kind-icon">parse<wbr>Primitive<span class="tsd-signature-symbol">(</span>cxt<span class="tsd-signature-symbol">: </span><a href="interfaces/parsecontext.html" class="tsd-signature-type">ParseContext</a>, position<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/recipientprimitive.html" class="tsd-signature-type">RecipientPrimitive</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:166</li>
+									<li>Defined in trl.ts:233</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Parses the specified primitive string into a recipient primitive.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>context: <a href="interfaces/parsecontext.html" class="tsd-signature-type">ParseContext</a></h5>
+									<h5>cxt: <a href="interfaces/parsecontext.html" class="tsd-signature-type">ParseContext</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The current parse context.</p>
+									</div>
 								</li>
 								<li>
 									<h5>position: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The position of the specified group.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="interfaces/recipientprimitive.html" class="tsd-signature-type">RecipientPrimitive</a></h4>
+							<p>A recipient primitive.</p>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
 					<a name="parsetrl" class="tsd-anchor"></a>
 					<h3>parse<wbr>Trl</h3>
-					<ul class="tsd-signatures tsd-kind-function">
+					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
 						<li class="tsd-signature tsd-kind-icon">parse<wbr>Trl<span class="tsd-signature-symbol">(</span>trl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/recipientcommand.html" class="tsd-signature-type">RecipientCommand</a><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:102</li>
+									<li>Defined in trl.ts:145</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Parses the specified TRL string into a list of recipient commands.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -692,7 +954,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:477</li>
+									<li>Defined in trl.ts:764</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -731,9 +993,12 @@
 						<a href="enums/action.html" class="tsd-kind-icon">Action</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="classes/cacheoverrideinfo.html" class="tsd-kind-icon">Cache<wbr>Override<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="classes/nstgapi.html" class="tsd-kind-icon">Ns<wbr>TgApi</a>
 					</li>
-					<li class=" tsd-kind-class tsd-is-not-exported">
+					<li class=" tsd-kind-class">
 						<a href="classes/parseerror.html" class="tsd-kind-icon">Parse<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
@@ -806,9 +1071,6 @@
 						<a href="globals.html#getworldassemblymembers" class="tsd-kind-icon">get<wbr>World<wbr>Assembly<wbr>Members</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="globals.html#makecachedrequest" class="tsd-kind-icon">make<wbr>Cached<wbr>Request</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#parsecommand" class="tsd-kind-icon">parse<wbr>Command</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
@@ -817,7 +1079,7 @@
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#parseprimitive" class="tsd-kind-icon">parse<wbr>Primitive</a>
 					</li>
-					<li class=" tsd-kind-function">
+					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#parsetrl" class="tsd-kind-icon">parse<wbr>Trl</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">

@@ -66,10 +66,9 @@
 			<div class="tsd-panel tsd-typography">
 				<h1 id="nstg">nstg</h1>
 				<p><a href="https://badge.fury.io/js/nstg"><img src="https://badge.fury.io/js/nstg.svg" alt="npm version"></a></p>
-				<p>nstg is a free and open source library that allows Node.js and web applications
-					to easily send telegrams to a list of recipients defined using a powerful
-					query language called Telegram Recipient Language (TRL), or alternatively to a
-				simple list of nations.</p>
+				<p>nstg is a free and open source library that allows Node.js applications to
+					easily send telegrams to a list of recipients defined using a powerful query
+				language called Telegram Recipient Language.</p>
 				<p>nstg features the following:</p>
 				<ul>
 					<li>ability to send telegrams to complex sets of nations defined using TRL or to
@@ -78,22 +77,22 @@
 						nations that match the provided TRL string, which is useful for recruitment
 					purposes</li>
 					<li>progress reporting using event handlers</li>
-					<li>request caching to improve performance</li>
-					<li>all the features of nsapi, including rate-limiting, XML decoding, and support
-					for version 9 of the NationStates API</li>
+					<li>all the features of nsapi, including rate-limiting, XML decoding, request
+					caching, and support for version 9 of the NationStates API</li>
 				</ul>
 				<h2 id="usage">Usage</h2>
 				<p>You can install nstg using npm: <code>npm install nsapi</code>.</p>
 				<p>You can also build nstg from source using Gulp. There are two main targets:
 					<code>prod</code> and <code>dev</code>. The only difference between them is that <code>dev</code> includes
 				source maps. There is also a <code>docs</code> target to generate documentation.</p>
-				<p>Consult the documentation for more information on API structure and methods,
-				or this page for more information on TRL.</p>
+				<p>Consult <a href="">the documentation</a>
+					for more information on API structure and methods, or
+					<a href="https://github.com/auralia/node-nstg/wiki/Template-Recipient-Language">this page</a>
+				for more information on TRL.</p>
 				<h2 id="examples">Examples</h2>
-				<p>The following is a (relatively!) simple example that sends a telegram to
-				Auralia:</p>
+				<p>The following is a simple example that sends a telegram to the nation Auralia:</p>
 				<pre><code class="lang-js"><span class="hljs-keyword">var</span> nsapi = <span class="hljs-built_in">require</span>(<span class="hljs-string">"nsapi"</span>);
-<span class="hljs-keyword">var</span> nstg = <span class="hljs-built_in">require</span>(<span class="hljs-string">"../lib/api"</span>);
+<span class="hljs-keyword">var</span> nstg = <span class="hljs-built_in">require</span>(<span class="hljs-string">"nstg"</span>);
 
 <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Replace client key, telegram ID and telegram secret key with your own</span>
 <span class="hljs-keyword">var</span> clientKey = <span class="hljs-string">"&lt;client key&gt;"</span>;
@@ -101,7 +100,7 @@
 <span class="hljs-keyword">var</span> telegramKey = <span class="hljs-string">"&lt;telegram secret key&gt;"</span>;
 
 <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Replace the user agent with your own</span>
-<span class="hljs-keyword">var</span> api = <span class="hljs-keyword">new</span> nsapi.NsApi(<span class="hljs-string">"Auralia"</span>);
+<span class="hljs-keyword">var</span> api = <span class="hljs-keyword">new</span> nsapi.NsApi(<span class="hljs-string">"&lt;user agent&gt;"</span>);
 <span class="hljs-keyword">var</span> tgapi = <span class="hljs-keyword">new</span> nstg.NsTgApi(api, clientKey);
 
 tgapi.onJobStart = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
@@ -117,25 +116,25 @@ tgapi.onTgFailure = <span class="hljs-function"><span class="hljs-keyword">funct
     <span class="hljs-built_in">console</span>.log(recipient.status.err);
 };
 
-<span class="hljs-keyword">var</span> promise = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">resolve</span>) </span>{
-    tgapi.onJobComplete = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Finished sending telegrams."</span>);
-        tgapi.cleanup();
-        api.cleanup();
-    };
-});
+tgapi.onJobComplete = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Finished sending telegrams."</span>);
+    tgapi.cleanup();
+    api.cleanup();
+};
 
-tgapi.sendTelegramsTrl([<span class="hljs-string">"Auralia"</span>], {
+tgapi.sendTelegramsTrl(<span class="hljs-string">"nations [Auralia];"</span>, {
     <span class="hljs-attr">telegramId</span>: telegramId,
     <span class="hljs-attr">telegramKey</span>: telegramKey,
-    <span class="hljs-attr">telegramType</span>: nsapi.TelegramType.NonRecruitment
+    <span class="hljs-attr">telegramType</span>: nsapi.TelegramType.NonRecruitment,
+    <span class="hljs-attr">doNotSendIfRecruitBlocked</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">doNotSendIfCampaignBlocked</span>: <span class="hljs-literal">false</span>
 }).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">id</span>) </span>{
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Job ID: "</span> + id);
 }).catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
     <span class="hljs-built_in">console</span>.log(err);
 });
 </code></pre>
-				<p>See example.js for other examples on how to use nstg.</p>
+				<p>See examples/example.js for other examples on how to use nstg.</p>
 				<h2 id="license">License</h2>
 				<p>nstg is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>.</p>
 			</div>
@@ -154,9 +153,12 @@ tgapi.sendTelegramsTrl([<span class="hljs-string">"Auralia"</span>], {
 						<a href="enums/action.html" class="tsd-kind-icon">Action</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="classes/cacheoverrideinfo.html" class="tsd-kind-icon">Cache<wbr>Override<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="classes/nstgapi.html" class="tsd-kind-icon">Ns<wbr>TgApi</a>
 					</li>
-					<li class=" tsd-kind-class tsd-is-not-exported">
+					<li class=" tsd-kind-class">
 						<a href="classes/parseerror.html" class="tsd-kind-icon">Parse<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
@@ -229,9 +231,6 @@ tgapi.sendTelegramsTrl([<span class="hljs-string">"Auralia"</span>], {
 						<a href="globals.html#getworldassemblymembers" class="tsd-kind-icon">get<wbr>World<wbr>Assembly<wbr>Members</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="globals.html#makecachedrequest" class="tsd-kind-icon">make<wbr>Cached<wbr>Request</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#parsecommand" class="tsd-kind-icon">parse<wbr>Command</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
@@ -240,7 +239,7 @@ tgapi.sendTelegramsTrl([<span class="hljs-string">"Auralia"</span>], {
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#parseprimitive" class="tsd-kind-icon">parse<wbr>Primitive</a>
 					</li>
-					<li class=" tsd-kind-function">
+					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#parsetrl" class="tsd-kind-icon">parse<wbr>Trl</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
