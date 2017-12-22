@@ -67,8 +67,8 @@
 				<h1 id="nstg">nstg</h1>
 				<p><a href="https://badge.fury.io/js/nstg"><img src="https://badge.fury.io/js/nstg.svg" alt="npm version"></a></p>
 				<p>nstg is a free and open source library that allows Node.js applications to
-					easily send telegrams to a list of recipients defined using a powerful query
-				language called Telegram Recipient Language.</p>
+					easily send telegrams to a list of NationStates nations defined using a
+				powerful query language called Telegram Recipient Language.</p>
 				<p>nstg features the following:</p>
 				<ul>
 					<li>ability to send telegrams to complex sets of nations defined using TRL or to
@@ -87,8 +87,10 @@
 				source maps. There is also a <code>docs</code> target to generate documentation.</p>
 				<p>Consult <a href="https://auralia.github.io/node-nstg/">the documentation</a>
 					for more information on API structure and methods, or
-					<a href="https://github.com/auralia/node-nstg/blob/master/docs/trl.md">this page</a>
+					<a href="https://github.com/auralia/node-nstg/blob/master/trl.md">this page</a>
 				for more information on TRL.</p>
+				<p>nstg targets ES5 but requires support for ES6 promises, so if you&#39;re not
+				using a runtime that supports them natively, you&#39;ll have to use a polyfill.</p>
 				<h2 id="examples">Examples</h2>
 				<p>The following is a simple example that sends a telegram to the nation Auralia:</p>
 				<pre><code class="lang-js"><span class="hljs-keyword">var</span> nsapi = <span class="hljs-built_in">require</span>(<span class="hljs-string">"nsapi"</span>);
@@ -153,13 +155,13 @@ tgapi.sendTelegramsTrl(<span class="hljs-string">"nations [Auralia];"</span>, {
 						<a href="enums/action.html" class="tsd-kind-icon">Action</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/cacheoverrideinfo.html" class="tsd-kind-icon">Cache<wbr>Override<wbr>Info</a>
-					</li>
-					<li class=" tsd-kind-class">
 						<a href="classes/nstgapi.html" class="tsd-kind-icon">Ns<wbr>TgApi</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/parseerror.html" class="tsd-kind-icon">Parse<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/refreshoverridecache.html" class="tsd-kind-icon">Refresh<wbr>Override<wbr>Cache</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="interfaces/parsecontext.html" class="tsd-kind-icon">Parse<wbr>Context</a>

@@ -76,9 +76,9 @@
 						<section class="tsd-index-section ">
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class"><a href="classes/cacheoverrideinfo.html" class="tsd-kind-icon">Cache<wbr>Override<wbr>Info</a></li>
 								<li class="tsd-kind-class"><a href="classes/nstgapi.html" class="tsd-kind-icon">Ns<wbr>TgApi</a></li>
 								<li class="tsd-kind-class"><a href="classes/parseerror.html" class="tsd-kind-icon">Parse<wbr>Error</a></li>
+								<li class="tsd-kind-class"><a href="classes/refreshoverridecache.html" class="tsd-kind-icon">Refresh<wbr>Override<wbr>Cache</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -134,7 +134,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:529</li>
+									<li>Defined in trl.ts:506</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -174,13 +174,13 @@
 					<a name="evaluatecommand" class="tsd-anchor"></a>
 					<h3>evaluate<wbr>Command</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">evaluate<wbr>Command<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, command<span class="tsd-signature-symbol">: </span><a href="interfaces/recipientcommand.html" class="tsd-signature-type">RecipientCommand</a>, nations<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, continuousCacheOverrideInfo<span class="tsd-signature-symbol">: </span><a href="classes/cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">evaluate<wbr>Command<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, command<span class="tsd-signature-symbol">: </span><a href="interfaces/recipientcommand.html" class="tsd-signature-type">RecipientCommand</a>, nations<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, refreshOverrideCache<span class="tsd-signature-symbol">: </span><a href="classes/refreshoverridecache.html" class="tsd-signature-type">RefreshOverrideCache</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:353</li>
+									<li>Defined in trl.ts:348</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -209,11 +209,10 @@
 									</div>
 								</li>
 								<li>
-									<h5>continuousCacheOverrideInfo: <a href="classes/cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a></h5>
+									<h5>refreshOverrideCache: <a href="classes/refreshoverridecache.html" class="tsd-signature-type">RefreshOverrideCache</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Rules for when to override API caching
-											when re-evaluating a TRL string in
-										continuous mode.</p>
+										<p>Rules for when to override API caching when
+										re-evaluating a TRL string in continuous mode.</p>
 									</div>
 								</li>
 							</ul>
@@ -226,13 +225,13 @@
 					<a name="evaluategroup" class="tsd-anchor"></a>
 					<h3>evaluate<wbr>Group</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">evaluate<wbr>Group<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, commands<span class="tsd-signature-symbol">: </span><a href="interfaces/recipientcommand.html" class="tsd-signature-type">RecipientCommand</a><span class="tsd-signature-symbol">[]</span>, continuousCacheOverrideInfo<span class="tsd-signature-symbol">: </span><a href="classes/cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">evaluate<wbr>Group<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, commands<span class="tsd-signature-symbol">: </span><a href="interfaces/recipientcommand.html" class="tsd-signature-type">RecipientCommand</a><span class="tsd-signature-symbol">[]</span>, refreshOverrideCache<span class="tsd-signature-symbol">: </span><a href="classes/refreshoverridecache.html" class="tsd-signature-type">RefreshOverrideCache</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:329</li>
+									<li>Defined in trl.ts:325</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -255,11 +254,10 @@
 									</div>
 								</li>
 								<li>
-									<h5>continuousCacheOverrideInfo: <a href="classes/cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a></h5>
+									<h5>refreshOverrideCache: <a href="classes/refreshoverridecache.html" class="tsd-signature-type">RefreshOverrideCache</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Rules for when to override API caching
-											when re-evaluating a TRL string in
-										continuous mode.</p>
+										<p>Rules for when to override API caching when
+										re-evaluating a TRL string in continuous mode.</p>
 									</div>
 								</li>
 							</ul>
@@ -273,13 +271,13 @@
 					<a name="evaluateprimitive" class="tsd-anchor"></a>
 					<h3>evaluate<wbr>Primitive</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">evaluate<wbr>Primitive<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, primitive<span class="tsd-signature-symbol">: </span><a href="interfaces/recipientprimitive.html" class="tsd-signature-type">RecipientPrimitive</a>, action<span class="tsd-signature-symbol">: </span><a href="enums/action.html" class="tsd-signature-type">Action</a>, nations<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, continuousCacheOverrideInfo<span class="tsd-signature-symbol">: </span><a href="classes/cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">evaluate<wbr>Primitive<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, primitive<span class="tsd-signature-symbol">: </span><a href="interfaces/recipientprimitive.html" class="tsd-signature-type">RecipientPrimitive</a>, action<span class="tsd-signature-symbol">: </span><a href="enums/action.html" class="tsd-signature-type">Action</a>, nations<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, refreshOverrideCache<span class="tsd-signature-symbol">: </span><a href="classes/refreshoverridecache.html" class="tsd-signature-type">RefreshOverrideCache</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:382</li>
+									<li>Defined in trl.ts:376</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -315,11 +313,10 @@
 									</div>
 								</li>
 								<li>
-									<h5>continuousCacheOverrideInfo: <a href="classes/cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a></h5>
+									<h5>refreshOverrideCache: <a href="classes/refreshoverridecache.html" class="tsd-signature-type">RefreshOverrideCache</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Rules for when to override API caching
-											when re-evaluating a TRL string in
-										continuous mode.</p>
+										<p>Rules for when to override API caching when
+										re-evaluating a TRL string in continuous mode.</p>
 									</div>
 								</li>
 							</ul>
@@ -332,13 +329,13 @@
 					<a name="evaluatetrl" class="tsd-anchor"></a>
 					<h3>evaluate<wbr>Trl</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">evaluate<wbr>Trl<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, commands<span class="tsd-signature-symbol">: </span><a href="interfaces/recipientcommand.html" class="tsd-signature-type">RecipientCommand</a><span class="tsd-signature-symbol">[]</span>, continuousCacheOverrideInfo<span class="tsd-signature-symbol">: </span><a href="classes/cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">evaluate<wbr>Trl<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, commands<span class="tsd-signature-symbol">: </span><a href="interfaces/recipientcommand.html" class="tsd-signature-type">RecipientCommand</a><span class="tsd-signature-symbol">[]</span>, refreshOverrideCache<span class="tsd-signature-symbol">: </span><a href="classes/refreshoverridecache.html" class="tsd-signature-type">RefreshOverrideCache</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:308</li>
+									<li>Defined in trl.ts:305</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -361,11 +358,10 @@
 									</div>
 								</li>
 								<li>
-									<h5>continuousCacheOverrideInfo: <a href="classes/cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a></h5>
+									<h5>refreshOverrideCache: <a href="classes/refreshoverridecache.html" class="tsd-signature-type">RefreshOverrideCache</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Rules for when to override API caching
-											when re-evaluating a TRL string in
-										continuous mode.</p>
+										<p>Rules for when to override API caching when
+										re-evaluating a TRL string in continuous mode.</p>
 									</div>
 								</li>
 							</ul>
@@ -385,7 +381,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:729</li>
+									<li>Defined in trl.ts:707</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -429,7 +425,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:747</li>
+									<li>Defined in trl.ts:729</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -480,7 +476,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:554</li>
+									<li>Defined in trl.ts:531</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -512,7 +508,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:652</li>
+									<li>Defined in trl.ts:630</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -550,13 +546,13 @@
 					<a name="getrecipients" class="tsd-anchor"></a>
 					<h3>get<wbr>Recipients</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Recipients<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, trl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, continuousCacheOverrideInfo<span class="tsd-signature-symbol">?: </span><a href="classes/cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Recipients<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, trl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, refreshOverrideCache<span class="tsd-signature-symbol">?: </span><a href="classes/refreshoverridecache.html" class="tsd-signature-type">RefreshOverrideCache</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:124</li>
+									<li>Defined in trl.ts:122</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -579,11 +575,10 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> continuousCacheOverrideInfo: <a href="classes/cacheoverrideinfo.html" class="tsd-signature-type">CacheOverrideInfo</a><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> refreshOverrideCache: <a href="classes/refreshoverridecache.html" class="tsd-signature-type">RefreshOverrideCache</a><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Rules for when to override API caching
-											when re-evaluating a TRL string in
-										continuous mode.</p>
+										<p>Rules for when to override API caching when
+										re-evaluating a TRL string in continuous mode.</p>
 									</div>
 								</li>
 							</ul>
@@ -603,7 +598,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:690</li>
+									<li>Defined in trl.ts:668</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -641,13 +636,13 @@
 					<a name="getregions" class="tsd-anchor"></a>
 					<h3>get<wbr>Regions</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Regions<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, overrideCache<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Regions<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NsApi</span>, regions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, overrideCache<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:567</li>
+									<li>Defined in trl.ts:544</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -664,7 +659,7 @@
 									</div>
 								</li>
 								<li>
-									<h5>args: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>regions: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The list of regions.</p>
 									</div>
@@ -691,7 +686,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:594</li>
+									<li>Defined in trl.ts:570</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -736,7 +731,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:631</li>
+									<li>Defined in trl.ts:609</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -774,7 +769,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:611</li>
+									<li>Defined in trl.ts:589</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -812,7 +807,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:191</li>
+									<li>Defined in trl.ts:187</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -850,7 +845,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:157</li>
+									<li>Defined in trl.ts:153</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -888,7 +883,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:233</li>
+									<li>Defined in trl.ts:229</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -926,7 +921,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:145</li>
+									<li>Defined in trl.ts:141</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -954,7 +949,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in trl.ts:764</li>
+									<li>Defined in trl.ts:749</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -993,13 +988,13 @@
 						<a href="enums/action.html" class="tsd-kind-icon">Action</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/cacheoverrideinfo.html" class="tsd-kind-icon">Cache<wbr>Override<wbr>Info</a>
-					</li>
-					<li class=" tsd-kind-class">
 						<a href="classes/nstgapi.html" class="tsd-kind-icon">Ns<wbr>TgApi</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/parseerror.html" class="tsd-kind-icon">Parse<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/refreshoverridecache.html" class="tsd-kind-icon">Refresh<wbr>Override<wbr>Cache</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="interfaces/parsecontext.html" class="tsd-kind-icon">Parse<wbr>Context</a>

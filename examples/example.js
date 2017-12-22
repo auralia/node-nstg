@@ -23,7 +23,7 @@ var telegramId = "<telegram ID>";
 var telegramKey = "<telegram secret key>";
 
 // TODO: Replace the user agent with your own
-var api = new nsapi.NsApi("<user agent>");
+var api = new nsapi.NsApi("Auralia");
 var tgapi = new nstg.NsTgApi(api, clientKey);
 
 // Evaluates a TRL string that retrieves:
@@ -42,42 +42,6 @@ function evaluateTrlExample() {
               + "refounded [10];";
     return tgapi.evaluateTrl(trl).then(function(nations) {
         console.log(nations);
-    });
-}
-
-// The following sample sends a telegram to Auralia and prints out associated
-// information.
-function sendTelegramsNationsExample() {
-    tgapi.onJobStart = function() {
-        console.log("Started sending telegrams.");
-    };
-
-    tgapi.onTgSuccess = function(recipient) {
-        console.log("Recipient succeeded: " + recipient.nation);
-    };
-
-    tgapi.onTgFailure = function(recipient) {
-        console.log("Recipient failed: " + recipient.nation);
-        console.log(recipient.status.err);
-    };
-
-    tgapi.sendTelegramsNations(["Auralia"], {
-        telegramId: telegramId,
-        telegramKey: telegramKey,
-        telegramType: nsapi.TelegramType.NonRecruitment,
-        doNotSendIfRecruitBlocked: false,
-        doNotSendIfCampaignBlocked: false
-    }).then(function(id) {
-        console.log("Job ID: " + id);
-    }).catch(function(err) {
-        console.log(err);
-    });
-
-    return new Promise(function(resolve) {
-        tgapi.onJobComplete = function() {
-            console.log("Finished sending telegrams.");
-            resolve();
-        };
     });
 }
 
@@ -163,10 +127,6 @@ Promise.resolve()
        .then(function() {
            console.log("Evaluate TRL example:\n");
            return evaluateTrlExample();
-       })
-       .then(function() {
-           console.log("\nSend telegrams (nations) example:\n");
-           return sendTelegramsNationsExample();
        })
        .then(function() {
            console.log("\nSend telegrams (TRL string) example:\n");

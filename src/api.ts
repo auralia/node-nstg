@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2016 Auralia
+ * Copyright (C) 2016-2017 Auralia
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,15 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import {getRecipients, ParseError} from "./trl";
 import * as clone from "clone";
-import {Promise} from "es6-promise";
 import {NsApi, TelegramType} from "nsapi";
 
 export {ParseError};
 
 /**
- * Information related to a particular telegram job.
+ * Represents a telegram job, which is a telegram combined with a set of
+ * recipients for that telegram.
  */
 export interface TelegramJob {
     /**
@@ -41,13 +42,19 @@ export interface TelegramJob {
      */
     tgInfo: TelegramInfo;
     /**
-     * Whether or not new recipients are being continuously added to the list.
+     * Whether the list of recipients should be refreshed by re-evaluating the
+     * TRL string at periodic intervals.
      */
-    isContinuous: boolean;
+    refresh: boolean;
     /**
-     * Whether or not any telegrams are actually sent to member states.
+     * Rules for when to override API caching when re-evaluating a TRL string
+     * during a refresh.
      */
-    isDryRun: boolean;
+    refreshOverrideCache: RefreshOverrideCache;
+    /**
+     * Whether to not actually send any telegrams to the specified recipients.
+     */
+    dryRun: boolean;
     /**
      * Information about the status of the job.
      */
@@ -55,21 +62,23 @@ export interface TelegramJob {
 }
 
 /**
- * Information about the status of a telegram job.
+ * Represents the status of a telegram job.
  */
 export interface TelegramJobStatus {
     /**
-     * Whether or not this job is currently being processed.
+     * Whether at least one telegram associated with this job has been sent or
+     * is in the process of being sent.
      */
     isStarted: boolean;
     /**
-     * Whether or not this job has been completely processed.
+     * Whether there are no more telegrams that must be sent for this job.
      */
     isComplete: boolean;
 }
 
 /**
- * Information related to a particular recipient.
+ * Represents a particular nation that will be the recipient of a telegram in
+ * the context of a telegram job.
  */
 export interface Recipient {
     /**
@@ -87,12 +96,12 @@ export interface Recipient {
 }
 
 /**
- * Information relating to a recipient's status.
+ * Represents a recipient's status in the context of a telegram job.
  */
 export interface RecipientStatus {
     /**
-     * Whether or not a telegram was successfully sent to the recipient.
-     * This value will be undefined if no attempt to send a telegram was made.
+     * Whether a telegram was successfully sent to the recipient. This value
+     * will be undefined if no attempt to send a telegram was yet made.
      */
     success?: boolean;
     /**
@@ -102,11 +111,11 @@ export interface RecipientStatus {
 }
 
 /**
- * Information related to a particular telegram.
+ * Represents a particular telegram.
  */
 export interface TelegramInfo {
     /**
-     * The associated with this telegram.
+     * The ID associated with this telegram.
      */
     telegramId: string;
     /**
@@ -114,67 +123,60 @@ export interface TelegramInfo {
      */
     telegramKey: string;
     /**
-     * The type of this telegram: recruitment or non-recruitment. This will
-     * determine what delay is used by the NationStates API.
+     * The telegram type for rate limit purposes. Recruitment telegrams have a
+     * stricter rate limit than non-recruitment telegrams.
      */
     telegramType: TelegramType;
     /**
-     * If set to true, this telegram will not be sent to any nation with
-     * recruitment telegrams blocked.
+     * Whether this telegram should not be sent to any nation with recruitment
+     * telegrams blocked.
      */
-    doNotSendIfRecruitBlocked: boolean;
+    skipIfRecruitBlocked: boolean;
     /**
-     * If set to true, this telegram will not be sent to any nation with
-     * campaign telegrams blocked.
+     * Whether this telegram should not be sent to any nation with campaign
+     * telegrams blocked.
      */
-    doNotSendIfCampaignBlocked: boolean;
+    skipIfCampaignBlocked: boolean;
 }
 
 /**
- * Information about when to override normal API caching when re-evaluating a
- * TRL string.
+ * Rules for when to override API caching when re-evaluating a TRL string
+ * during a refresh.
  */
-export class CacheOverrideInfo {
+export class RefreshOverrideCache {
     /**
-     * Overrides normal API caching for region primitives when re-evaluating a
-     * TRL string.
+     * Whether to override API caching for regions primitives.
      */
     overrideRegions?: boolean;
     /**
-     * Overrides normal API caching for tags primitives when re-evaluating a
-     * TRL string.
+     * Whether to override API caching for tags primitives.
      */
     overrideTags?: boolean;
     /**
-     * Overrides normal API caching for wa primitives when re-evaluating a
-     * TRL string.
+     * Whether to override API caching for wa primitives.
      */
     overrideWa?: boolean;
     /**
-     * Overrides normal API caching for new primitives when re-evaluating a
-     * TRL string.
+     * Whether to override API caching for new primitives.
      */
     overrideNew?: boolean;
     /**
-     * Overrides normal API caching for refounded primitives when re-evaluating
-     * a TRL string.
+     * Whether to override API caching for refounded primitives.
      */
     overrideRefounded?: boolean;
     /**
-     * Overrides normal API caching for categories primitives when
-     * re-evaluating a TRL string.
+     * Whether to override API caching for categories primitives.
      */
     overrideCategories?: boolean;
     /**
-     * Overrides normal API caching for census primitives when re-evaluating a
-     * TRL string.
+     * Whether to override API caching for census primitives.
      */
     overrideCensus?: boolean;
 }
 
 /**
- * Sends telegrams to a specified list of recipients using the
- * NationStates API.
+ * Sends telegrams to a list of NationStates nations defined using a powerful
+ * query language called Telegram Recipient Language.
  */
 export class NsTgApi {
     private _api: NsApi;
@@ -185,14 +187,13 @@ export class NsTgApi {
     private _onTgFailure: (recipient: Recipient) => void;
     private _onJobComplete: (jobId: string) => void;
 
-    private readonly _tgJobs: {[id: string]: TelegramJob};
+    private readonly _tgJobs: { [id: string]: TelegramJob };
     private readonly _tgQueue: Recipient[];
     private readonly _tgInterval: any;
     private _tgInProgress: boolean;
 
-    private readonly _tgContinuousInterval: any;
-    private _continuousDelaySecs: number;
-    private _continuousCacheOverrideInfo: CacheOverrideInfo;
+    private readonly _tgRefreshInterval: any;
+    private _refreshRateSecs: number;
 
     private _blockExistingTelegrams: boolean;
     private _blockNewTelegrams: boolean;
@@ -206,37 +207,27 @@ export class NsTgApi {
      * @param api The NationStates API instance used by this API. Only this API
      *            should use this instance.
      * @param clientKey The telegram client key used by this API.
-     * @param continuousDelaySecs The delay between re-evaluations of the TRL
-     *                            string for a continuous job in seconds.
-     *                            Defaults to 60.
-     * @param continuousCacheOverrideInfo Rules for when to override API caching
-     *                                    when re-evaluating a TRL string in
-     *                                    continuous mode. By default, all
-     *                                    primitives override caches except
-     *                                    categories and census.
+     * @param refreshRateSecs The number of seconds between refreshes for a
+     *                        telegram job with the refresh option enabled.
+     *                        Defaults to 60.
      */
     constructor(api: NsApi, clientKey: string,
-                continuousDelaySecs: number = 60,
-                continuousCacheOverrideInfo: CacheOverrideInfo = {
-                    overrideRegions: true,
-                    overrideTags: true,
-                    overrideWa: true,
-                    overrideNew: true,
-                    overrideRefounded: true,
-                    overrideCategories: false,
-                    overrideCensus: false
-                })
+                refreshRateSecs: number = 60)
     {
         this._api = api;
         this._clientKey = clientKey;
 
         this._onJobStart = () => {
+            /* Do nothing. */
         };
         this._onTgSuccess = () => {
+            /* Do nothing. */
         };
         this._onTgFailure = () => {
+            /* Do nothing. */
         };
         this._onJobComplete = () => {
+            /* Do nothing. */
         };
 
         this._tgJobs = {};
@@ -251,42 +242,45 @@ export class NsTgApi {
 
             const recipient = this._tgQueue.shift()!;
             this._tgInProgress = true;
-            this.sendTelegram(recipient);
+            this.sendTelegramWithCallbacks(recipient);
         }, 0);
         this._tgInProgress = false;
 
-        this._continuousDelaySecs = continuousDelaySecs;
-        this._tgContinuousInterval = setInterval(() => {
+        this._refreshRateSecs = refreshRateSecs;
+        this._tgRefreshInterval = setInterval(() => {
             if (this._blockNewTelegrams) {
                 return;
             }
 
             for (const jobId in this._tgJobs) {
-                if (this._tgJobs.hasOwnProperty(jobId)) {
-                    const job = this._tgJobs[jobId];
-                    if (job.isContinuous && !job.status.isComplete) {
-                        getRecipients(this.api, job.trl,
-                                      this.continuousCacheOverrideInfo)
-                            .then(nations => {
-                                const recipients = nations.filter(nation => {
-                                    for (const recipient of job.recipients) {
-                                        if (recipient.nation === nation) {
-                                            return false;
-                                        }
-                                    }
-                                    return true;
-                                }).map(nation => Object.freeze(
-                                    {nation, jobId, status: {}}));
-                                for (const recipient of recipients) {
-                                    job.recipients.push(recipient);
-                                    this._tgQueue.push(recipient);
-                                }
-                            });
-                    }
+                if (!this._tgJobs.hasOwnProperty(jobId)) {
+                    continue;
                 }
+
+                const job = this._tgJobs[jobId];
+                if (!job.refresh || job.status.isComplete) {
+                    continue;
+                }
+
+                getRecipients(this.api, job.trl,
+                              job.refreshOverrideCache)
+                    .then(nations => {
+                        const recipients = nations.filter(nation => {
+                            for (const recipient of job.recipients) {
+                                if (recipient.nation === nation) {
+                                    return false;
+                                }
+                            }
+                            return true;
+                        }).map(nation => Object.freeze(
+                            {nation, jobId, status: {}}));
+                        for (const recipient of recipients) {
+                            job.recipients.push(recipient);
+                            this._tgQueue.push(recipient);
+                        }
+                    });
             }
-        }, this.continuousDelaySecs * 1000);
-        this.continuousCacheOverrideInfo = continuousCacheOverrideInfo;
+        }, this.refreshRateSecs * 1000);
 
         this._blockExistingTelegrams = false;
         this._blockNewTelegrams = false;
@@ -384,28 +378,11 @@ export class NsTgApi {
     }
 
     /**
-     * Gets the delay between re-evaluations of the TRL string for a continuous
-     * job in seconds.
+     * Gets the number of seconds between refreshes for a telegram job with the
+     * refresh option enabled.
      */
-    get continuousDelaySecs() {
-        return this._continuousDelaySecs;
-    }
-
-    /**
-     * Gets the rules associated with overriding API caching when
-     * re-evaluating a TRL string in continuous mode.
-     */
-    get continuousCacheOverrideInfo() {
-        return this._continuousCacheOverrideInfo;
-    }
-
-    /**
-     * Sets the rules associated with overriding API caching when
-     * re-evaluating a TRL string in continuous mode.
-     */
-    set continuousCacheOverrideInfo(continuousCacheOverrideInfo: CacheOverrideInfo) {
-        this._continuousCacheOverrideInfo = Object.freeze(
-            continuousCacheOverrideInfo);
+    get refreshRateSecs() {
+        return this._refreshRateSecs;
     }
 
     /**
@@ -466,7 +443,8 @@ export class NsTgApi {
     public clearQueue(): void {
         while (this._tgQueue.length > 0) {
             const recipient = this._tgQueue.pop()!;
-            this.recipientFailure(recipient, new Error("API queue cleared"));
+            this.recipientFailure(recipient,
+                                  new Error("API queue cleared"));
         }
     }
 
@@ -479,7 +457,7 @@ export class NsTgApi {
      */
     public cleanup(): void {
         clearInterval(this._tgInterval);
-        clearInterval(this._tgContinuousInterval);
+        clearInterval(this._tgRefreshInterval);
 
         this.clearQueue();
         this._cleanup = true;
@@ -527,24 +505,8 @@ export class NsTgApi {
      * @return A promise returning the nations represented by the specified TRL
      *         string.
      */
-    public evaluateTrl(trl: string): Promise<string[]> {
-        return getRecipients(this.api, trl);
-    }
-
-    /**
-     * Sends telegrams to the recipients in the specified array.
-     *
-     * @param nations The nations to send the telegram to.
-     * @param tgInfo Information about the telegram to send.
-     *
-     * @return A promise returning the ID of the telegram job associated with
-     *         this request.
-     */
-    public sendTelegramsNations(nations: string[],
-                                tgInfo: TelegramInfo): Promise<string>
-    {
-        return this.sendTelegramsTrl("nations [" + nations.join(",") + "];",
-                                     tgInfo, false);
+    public async evaluateTrl(trl: string): Promise<string[]> {
+        return await getRecipients(this.api, trl);
     }
 
     /**
@@ -553,78 +515,91 @@ export class NsTgApi {
      *
      * @param trl The TRL string.
      * @param tgInfo Information about the telegram to send.
-     * @param isContinuous Whether or not the TRL string should be continuously
-     *                     re-evaluated and the new nations added to the queue.
-     *                     Defaults to false.
-     * @param isDryRun If true, no telegrams will be sent to nations. Defaults
-     *                 to false.
+     * @param refresh Whether the list of recipients should be refreshed by
+     *                re-evaluating the TRL string at periodic intervals.
+     *                Defaults to false.
+     * @param refreshOverrideCache Rules for when to override API caching when
+     *                             re-evaluating a TRL string during a refresh.
+     *                             By default, all primitives override caches
+     *                             except categories and census.
+     * @param dryRun Whether to not actually send any telegrams to the
+     *               specified recipients. Defaults to false.
      *
      * @return A promise returning the ID of the telegram job associated with
      *         this request.
      */
-    public sendTelegramsTrl(trl: string, tgInfo: TelegramInfo,
-                            isContinuous: boolean = false,
-                            isDryRun: boolean = false): Promise<string>
+    public async sendTelegramsTrl(trl: string, tgInfo: TelegramInfo,
+                                  refresh: boolean = false,
+                                  refreshOverrideCache: RefreshOverrideCache = {
+                                      overrideRegions: true,
+                                      overrideTags: true,
+                                      overrideWa: true,
+                                      overrideNew: true,
+                                      overrideRefounded: true,
+                                      overrideCategories: false,
+                                      overrideCensus: false
+                                  },
+                                  dryRun: boolean = false): Promise<string>
     {
-        return Promise.resolve().then(() => {
-            if (this.blockNewTelegrams) {
-                throw new Error("New telegram requests are being blocked")
-            }
-            if (this._cleanup) {
-                throw new Error("API is shut down");
-            }
-            tgInfo = Object.freeze(clone(tgInfo));
-            return this.createJob(trl, tgInfo, isContinuous,
-                                  isDryRun)
-                       .then(job => {
-                           this._tgJobs[job.id] = job;
-                           for (const recipient of job.recipients) {
-                               this._tgQueue.push(recipient);
-                           }
-                           return job.id;
-                       });
-        });
+        if (this.blockNewTelegrams) {
+            throw new Error("New telegram requests are being blocked")
+        }
+        if (this._cleanup) {
+            throw new Error("API is shut down");
+        }
+        const _tgInfo = Object.freeze(clone(tgInfo));
+        const job = await this.createJob(trl, _tgInfo, refresh,
+                                         refreshOverrideCache, dryRun);
+        this._tgJobs[job.id] = job;
+        for (const recipient of job.recipients) {
+            this._tgQueue.push(recipient);
+        }
+        return job.id;
     }
 
     /**
      * Creates a job with the specified parameters.
      *
      * @param trl The TRL string.
-     * @param tgInfo Telegram information.
-     * @param isContinuous Whether or not continuous mode is enabled.
-     * @param isDryRun Whether or not dry run mode is enabled.
+     * @param tgInfo Information about the telegram to send.
+     * @param refresh Whether the list of recipients should be refreshed by
+     *                re-evaluating the TRL string at periodic intervals.
+     * @param refreshOverrideCache Rules for when to override API caching when
+     *                             re-evaluating a TRL string during a refresh.
+     * @param dryRun Whether to not actually send any telegrams to the
+     *               specified recipients.
      *
      * @return A promise returning the created telegram job.
      */
-    private createJob(trl: string, tgInfo: TelegramInfo,
-                      isContinuous: boolean,
-                      isDryRun: boolean): Promise<TelegramJob>
+    private async createJob(trl: string, tgInfo: TelegramInfo,
+                            refresh: boolean,
+                            refreshOverrideCache: RefreshOverrideCache,
+                            dryRun: boolean): Promise<TelegramJob>
     {
-        return Promise.resolve().then(() => {
-            const jobId = String(this._jobIdCounter++);
-            return getRecipients(this.api, trl)
-                .then(nations => nations.map(nation => Object.freeze(
-                    {nation, jobId, status: {}})))
-                .then(recipients => {
-                    if (recipients.length === 0 && !isContinuous) {
-                        throw new Error("No recipients in job");
-                    }
-                    return Object.freeze(
-                        {
-                            id: jobId,
-                            trl,
-                            recipients,
-                            tgInfo,
-                            isContinuous,
-                            isDryRun,
-                            status: {
-                                isStarted: false,
-                                isComplete: false
-                            }
-                        }
-                    );
-                });
-        });
+        const jobId = String(this._jobIdCounter++);
+        const nations = await getRecipients(this.api, trl);
+        const recipients: Recipient[] = [];
+        for (const nation of nations) {
+            recipients.push(Object.freeze({nation, jobId, status: {}}));
+        }
+        if (recipients.length === 0 && !refresh) {
+            throw new Error("No recipients in job");
+        }
+        return Object.freeze(
+            {
+                id: jobId,
+                trl,
+                recipients,
+                tgInfo,
+                refresh,
+                refreshOverrideCache,
+                dryRun,
+                status: {
+                    isStarted: false,
+                    isComplete: false
+                }
+            }
+        );
     }
 
     /**
@@ -632,52 +607,55 @@ export class NsTgApi {
      *
      * @param recipient The specified recipient.
      */
-    private sendTelegram(recipient: Recipient): void {
-        Promise.resolve()
-               .then(() => {
-                   const job = this.getJob(recipient.jobId);
-                   if (typeof job === "undefined") {
-                       throw new Error("Job does not exist");
-                   }
-                   if (!job.status.isStarted) {
-                       job.status.isStarted = true;
-                       this.onJobStart(job.id);
-                   }
+    private sendTelegramWithCallbacks(recipient: Recipient): void {
+        this.sendTelegram(recipient)
+            .then(() => this.recipientSuccess(recipient))
+            .catch(err => this.recipientFailure(recipient, err));
+    }
 
-                   let promise = Promise.resolve();
-                   if (job.tgInfo.doNotSendIfCampaignBlocked) {
-                       promise = promise.then(
-                           () => this.api.nationRequest(recipient.nation,
-                                                        ["tgcancampaign"])
-                                     .then(data => {
-                                         if (data["tgcancampaign"] !== 1) {
-                                             throw new Error(
-                                                 "Nation has blocked campaign"
-                                                 + " telegrams");
-                                         }
-                                     }));
-                   }
-                   if (job.tgInfo.doNotSendIfRecruitBlocked) {
-                       promise = promise.then(
-                           () => this.api.nationRequest(recipient.nation,
-                                                        ["tgcanrecruit"])
-                                     .then(data => {
-                                         if (data["tgcanrecruit"] !== 1) {
-                                             throw new Error(
-                                                 "Nation has blocked"
-                                                 + " recruitment telegrams");
-                                         }
-                                     }));
-                   }
-                   return promise.then(() => job);
-               })
-               .then(job => this.api.telegramRequest(this.clientKey,
-                                                     job.tgInfo.telegramId,
-                                                     job.tgInfo.telegramKey,
-                                                     recipient.nation,
-                                                     job.tgInfo.telegramType))
-               .then(() => this.recipientSuccess(recipient))
-               .catch(err => this.recipientFailure(recipient, err));
+    /**
+     * Sends a telegram to the specified recipient.
+     *
+     * @param recipient The specified recipient.
+     */
+    private async sendTelegram(recipient: Recipient): Promise<void> {
+        const job = this.getJob(recipient.jobId);
+        if (typeof job === "undefined") {
+            throw new Error("Job does not exist");
+        }
+        if (!job.status.isStarted) {
+            job.status.isStarted = true;
+            this.onJobStart(job.id);
+        }
+
+        if (job.tgInfo.skipIfRecruitBlocked) {
+            const data = await this.api.nationRequest(recipient.nation,
+                                                      ["tgcanrecruit"]);
+            if (data["tgcanrecruit"] !== 1) {
+                throw new Error(
+                    "Nation has blocked"
+                    + " recruitment telegrams");
+            }
+        }
+        if (job.tgInfo.skipIfCampaignBlocked) {
+            const data = await this.api.nationRequest(recipient.nation,
+                                                      ["tgcancampaign"]);
+            if (data["tgcancampaign"] !== 1) {
+                throw new Error(
+                    "Nation has blocked campaign"
+                    + " telegrams");
+            }
+        }
+
+        if (job.dryRun) {
+            return;
+        }
+
+        return await this.api.telegramRequest(this.clientKey,
+                                              job.tgInfo.telegramId,
+                                              job.tgInfo.telegramKey,
+                                              recipient.nation,
+                                              job.tgInfo.telegramType);
     }
 
     /**
@@ -724,7 +702,7 @@ export class NsTgApi {
      * @param job The job associated with the recipient.
      */
     private jobComplete(job: TelegramJob): void {
-        if (!job.isContinuous) {
+        if (!job.refresh) {
             for (const recipient of job.recipients) {
                 if (typeof recipient.status.success === "undefined") {
                     return;

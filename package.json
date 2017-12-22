@@ -1,7 +1,7 @@
 {
   "name": "nstg",
-  "version": "0.1.0",
-  "description": "Sends telegrams to a specified list of recipients using the NationStates API",
+  "version": "0.2.0",
+  "description": "Sends telegrams to a list of NationStates nations defined using a powerful query language called Telegram Recipient Language",
   "keywords": [
     "NationStates",
     "API",
@@ -27,19 +27,19 @@
     "url": "git://github.com/auralia/node-nstg.git"
   },
   "devDependencies": {
+    "del": "^3.0.0",
     "gulp": "^3.9.1",
-    "gulp-sourcemaps": "^2.2.0",
-    "gulp-typedoc": "^2.0.0",
-    "gulp-typescript": "^3.1.3",
-    "merge2": "^1.0.2",
-    "typedoc": "^0.5.1",
-    "typescript": "^2.0.10"
+    "gulp-sourcemaps": "^2.6.2",
+    "gulp-typedoc": "^2.1.1",
+    "gulp-typescript": "^3.2.3",
+    "merge2": "^1.2.0",
+    "typedoc": "^0.9.0",
+    "typescript": "^2.6.2"
   },
   "dependencies": {
     "@types/clone": "^0.1.30",
-    "@types/node": "^6.0.48",
-    "clone": "^2.0.0",
-    "es6-promise": "^4.0.5",
-    "nsapi": "^0.1.8"
+    "@types/node": "^8.5.2",
+    "clone": "^2.1.1",
+    "nsapi": "^0.1.14"
   }
 }

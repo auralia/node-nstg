@@ -3,8 +3,8 @@
 [![npm version](https://badge.fury.io/js/nstg.svg)](https://badge.fury.io/js/nstg)
 
 nstg is a free and open source library that allows Node.js applications to 
-easily send telegrams to a list of recipients defined using a powerful query 
-language called Telegram Recipient Language.
+easily send telegrams to a list of NationStates nations defined using a
+powerful query language called Telegram Recipient Language.
 
 nstg features the following:
 
@@ -27,8 +27,11 @@ source maps. There is also a `docs` target to generate documentation.
 
 Consult [the documentation](https://auralia.github.io/node-nstg/) 
 for more information on API structure and methods, or 
-[this page](https://github.com/auralia/node-nstg/blob/master/docs/trl.md)
+[this page](https://github.com/auralia/node-nstg/blob/master/trl.md)
 for more information on TRL.
+
+nstg targets ES5 but requires support for ES6 promises, so if you're not 
+using a runtime that supports them natively, you'll have to use a polyfill.
 
 ## Examples ##
 

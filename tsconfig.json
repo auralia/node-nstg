@@ -2,7 +2,8 @@
   "compilerOptions": {
     "declaration": true,
     "lib": [
-      "es5"
+      "es5",
+      "es2015.promise"
     ],
     "module": "commonjs",
     "noFallthroughCasesInSwitch": true,
@@ -11,8 +12,11 @@
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "strictNullChecks": true,
-    "target": "es5"
+    "strict": true,
+    "target": "es5",
+    "types": [
+      "node"
+    ]
   },
   "include": [
     "src/*"

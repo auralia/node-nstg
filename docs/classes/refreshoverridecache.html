@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CacheOverrideInfo | nstg</title>
+	<title>RefreshOverrideCache | nstg</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="cacheoverrideinfo.html">CacheOverrideInfo</a>
+					<a href="refreshoverridecache.html">RefreshOverrideCache</a>
 				</li>
 			</ul>
-			<h1>Class CacheOverrideInfo</h1>
+			<h1>Class RefreshOverrideCache</h1>
 		</div>
 	</div>
 </header>
@@ -69,8 +69,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Information about when to override normal API caching when re-evaluating a
-						TRL string.</p>
+						<p>Rules for when to override API caching when re-evaluating a TRL string
+						during a refresh.</p>
 					</div>
 				</div>
 			</section>
@@ -78,7 +78,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">CacheOverrideInfo</span>
+						<span class="target">RefreshOverrideCache</span>
 					</li>
 				</ul>
 			</section>
@@ -89,13 +89,13 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="cacheoverrideinfo.html#overridecategories" class="tsd-kind-icon">override<wbr>Categories</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="cacheoverrideinfo.html#overridecensus" class="tsd-kind-icon">override<wbr>Census</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="cacheoverrideinfo.html#overridenew" class="tsd-kind-icon">override<wbr>New</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="cacheoverrideinfo.html#overriderefounded" class="tsd-kind-icon">override<wbr>Refounded</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="cacheoverrideinfo.html#overrideregions" class="tsd-kind-icon">override<wbr>Regions</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="cacheoverrideinfo.html#overridetags" class="tsd-kind-icon">override<wbr>Tags</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="cacheoverrideinfo.html#overridewa" class="tsd-kind-icon">override<wbr>Wa</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="refreshoverridecache.html#overridecategories" class="tsd-kind-icon">override<wbr>Categories</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="refreshoverridecache.html#overridecensus" class="tsd-kind-icon">override<wbr>Census</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="refreshoverridecache.html#overridenew" class="tsd-kind-icon">override<wbr>New</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="refreshoverridecache.html#overriderefounded" class="tsd-kind-icon">override<wbr>Refounded</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="refreshoverridecache.html#overrideregions" class="tsd-kind-icon">override<wbr>Regions</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="refreshoverridecache.html#overridetags" class="tsd-kind-icon">override<wbr>Tags</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="refreshoverridecache.html#overridewa" class="tsd-kind-icon">override<wbr>Wa</a></li>
 							</ul>
 						</section>
 					</div>
@@ -109,13 +109,12 @@
 					<div class="tsd-signature tsd-kind-icon">override<wbr>Categories<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in api.ts:167</li>
+							<li>Defined in api.ts:170</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Overrides normal API caching for categories primitives when
-							re-evaluating a TRL string.</p>
+							<p>Whether to override API caching for categories primitives.</p>
 						</div>
 					</div>
 				</section>
@@ -125,13 +124,12 @@
 					<div class="tsd-signature tsd-kind-icon">override<wbr>Census<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in api.ts:172</li>
+							<li>Defined in api.ts:174</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Overrides normal API caching for census primitives when re-evaluating a
-							TRL string.</p>
+							<p>Whether to override API caching for census primitives.</p>
 						</div>
 					</div>
 				</section>
@@ -141,13 +139,12 @@
 					<div class="tsd-signature tsd-kind-icon">override<wbr>New<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in api.ts:157</li>
+							<li>Defined in api.ts:162</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Overrides normal API caching for new primitives when re-evaluating a
-							TRL string.</p>
+							<p>Whether to override API caching for new primitives.</p>
 						</div>
 					</div>
 				</section>
@@ -157,13 +154,12 @@
 					<div class="tsd-signature tsd-kind-icon">override<wbr>Refounded<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in api.ts:162</li>
+							<li>Defined in api.ts:166</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Overrides normal API caching for refounded primitives when re-evaluating
-							a TRL string.</p>
+							<p>Whether to override API caching for refounded primitives.</p>
 						</div>
 					</div>
 				</section>
@@ -173,13 +169,12 @@
 					<div class="tsd-signature tsd-kind-icon">override<wbr>Regions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in api.ts:142</li>
+							<li>Defined in api.ts:150</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Overrides normal API caching for region primitives when re-evaluating a
-							TRL string.</p>
+							<p>Whether to override API caching for regions primitives.</p>
 						</div>
 					</div>
 				</section>
@@ -189,13 +184,12 @@
 					<div class="tsd-signature tsd-kind-icon">override<wbr>Tags<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in api.ts:147</li>
+							<li>Defined in api.ts:154</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Overrides normal API caching for tags primitives when re-evaluating a
-							TRL string.</p>
+							<p>Whether to override API caching for tags primitives.</p>
 						</div>
 					</div>
 				</section>
@@ -205,13 +199,12 @@
 					<div class="tsd-signature tsd-kind-icon">override<wbr>Wa<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in api.ts:152</li>
+							<li>Defined in api.ts:158</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Overrides normal API caching for wa primitives when re-evaluating a
-							TRL string.</p>
+							<p>Whether to override API caching for wa primitives.</p>
 						</div>
 					</div>
 				</section>
@@ -230,42 +223,42 @@
 					<li class=" tsd-kind-enum">
 						<a href="../enums/action.html" class="tsd-kind-icon">Action</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class">
-						<a href="cacheoverrideinfo.html" class="tsd-kind-icon">Cache<wbr>Override<wbr>Info</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="cacheoverrideinfo.html#overridecategories" class="tsd-kind-icon">override<wbr>Categories</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="cacheoverrideinfo.html#overridecensus" class="tsd-kind-icon">override<wbr>Census</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="cacheoverrideinfo.html#overridenew" class="tsd-kind-icon">override<wbr>New</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="cacheoverrideinfo.html#overriderefounded" class="tsd-kind-icon">override<wbr>Refounded</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="cacheoverrideinfo.html#overrideregions" class="tsd-kind-icon">override<wbr>Regions</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="cacheoverrideinfo.html#overridetags" class="tsd-kind-icon">override<wbr>Tags</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="cacheoverrideinfo.html#overridewa" class="tsd-kind-icon">override<wbr>Wa</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="nstgapi.html" class="tsd-kind-icon">Ns<wbr>TgApi</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="parseerror.html" class="tsd-kind-icon">Parse<wbr>Error</a>
 					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
+						<a href="refreshoverridecache.html" class="tsd-kind-icon">Refresh<wbr>Override<wbr>Cache</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="refreshoverridecache.html#overridecategories" class="tsd-kind-icon">override<wbr>Categories</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="refreshoverridecache.html#overridecensus" class="tsd-kind-icon">override<wbr>Census</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="refreshoverridecache.html#overridenew" class="tsd-kind-icon">override<wbr>New</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="refreshoverridecache.html#overriderefounded" class="tsd-kind-icon">override<wbr>Refounded</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="refreshoverridecache.html#overrideregions" class="tsd-kind-icon">override<wbr>Regions</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="refreshoverridecache.html#overridetags" class="tsd-kind-icon">override<wbr>Tags</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="refreshoverridecache.html#overridewa" class="tsd-kind-icon">override<wbr>Wa</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="../interfaces/parsecontext.html" class="tsd-kind-icon">Parse<wbr>Context</a>
 					</li>

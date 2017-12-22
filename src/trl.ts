@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2016 Auralia
+ * Copyright (C) 2016-2017 Auralia
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-import {Promise} from "es6-promise";
-import {NsApi, WorldAssemblyCouncil, ApiError} from "nsapi";
-import {CacheOverrideInfo} from "./api";
+import {ApiError, NsApi, WorldAssemblyCouncil} from "nsapi";
+import {RefreshOverrideCache} from "./api";
 
 /**
  * Represents a directive to the TRL evaluator to take a particular action
@@ -66,14 +65,14 @@ export enum Action {
      * Add the recipients to the current group.
      */
     Add = 1,
-        /**
-         * Remove the recipients from the current group.
-         */
+    /**
+     * Remove the recipients from the current group.
+     */
     Remove = 2,
-        /**
-         * Remove all recipients from the current group that are not in this
-         * list of recipients.
-         */
+    /**
+     * Remove all recipients from the current group that are not in this
+     * list of recipients.
+     */
     Limit = 3
 }
 
@@ -114,19 +113,16 @@ export class ParseError extends Error {
  *
  * @param api The specified API.
  * @param trl The specified TRL string.
- * @param continuousCacheOverrideInfo Rules for when to override API caching
- *                                    when re-evaluating a TRL string in
- *                                    continuous mode.
+ * @param refreshOverrideCache Rules for when to override API caching when
+ *                             re-evaluating a TRL string in continuous mode.
  *
  * @return A promise returning the nations represented by the specified TRL
  *         string.
  */
-export function getRecipients(api: NsApi, trl: string,
-                              continuousCacheOverrideInfo: CacheOverrideInfo = {}): Promise<string[]>
+export async function getRecipients(api: NsApi, trl: string,
+                                    refreshOverrideCache: RefreshOverrideCache = {}): Promise<string[]>
 {
-    return Promise.resolve().then(() => {
-        return evaluateTrl(api, parseTrl(trl), continuousCacheOverrideInfo);
-    });
+    return await evaluateTrl(api, parseTrl(trl), refreshOverrideCache);
 }
 
 /**
@@ -251,8 +247,8 @@ function parsePrimitive(cxt: ParseContext,
     cxt.s = cxt.s.substring(1);
 
     if (cxt.s.indexOf("]") === -1) {
-        throw new ParseError("List of arguments must be terminated by ']'"
-                             + " character", position);
+        throw new ParseError("List of arguments must be terminated by"
+                             + " ']' character", position);
     }
 
     const args = cxt.s
@@ -264,18 +260,19 @@ function parsePrimitive(cxt: ParseContext,
         && (args.length !== 1
             || (args[0] !== "members" && args[0] !== "delegates")))
     {
-        throw new ParseError("Argument for 'wa' not 'members' or 'delegates'",
+        throw new ParseError("Argument for 'wa' not 'members' or"
+                             + " 'delegates'",
             position);
     }
     if (category === "new" && (args.length !== 1 || isNaN(parseInt(args[0])))) {
         throw new ParseError("Argument for 'new' not a number",
-            position);
+                             position);
     }
     if (category === "refounded" && (args.length !== 1
                                      || isNaN(parseInt(args[0]))))
     {
         throw new ParseError("Argument for 'new' not a number",
-            position);
+                             position);
     }
     if (category === "census"
         && (args.length !== 3
@@ -283,7 +280,8 @@ function parsePrimitive(cxt: ParseContext,
             || isNaN(parseInt(args[1]))
             || isNaN(parseInt(args[2]))))
     {
-        throw new ParseError("Arguments for 'census' not three integers",
+        throw new ParseError("Arguments for 'census' not three"
+                             + " integers",
             position);
     }
 
@@ -298,20 +296,19 @@ function parsePrimitive(cxt: ParseContext,
  *
  * @param api The specified API.
  * @param commands The specified recipient commands.
- * @param continuousCacheOverrideInfo Rules for when to override API caching
- *                                    when re-evaluating a TRL string in
- *                                    continuous mode.
+ * @param refreshOverrideCache Rules for when to override API caching when
+ *                             re-evaluating a TRL string in continuous mode.
  *
  * @return A promise returning the list of nations that the specified TRL string
  *         evaluates to.
  */
-export function evaluateTrl(api: NsApi,
-                            commands: RecipientCommand[],
-                            continuousCacheOverrideInfo: CacheOverrideInfo): Promise<string[]>
+export async function evaluateTrl(api: NsApi,
+                                  commands: RecipientCommand[],
+                                  refreshOverrideCache: RefreshOverrideCache): Promise<string[]>
 {
-    return evaluateGroup(api, commands, continuousCacheOverrideInfo).then(
-        nations => nations
-            .filter((nation, index) => nations.indexOf(nation) === index));
+    const nations = await evaluateGroup(api, commands, refreshOverrideCache);
+    return nations.filter(
+        (nation, index) => nations.indexOf(nation) === index);
 }
 
 /**
@@ -319,23 +316,22 @@ export function evaluateTrl(api: NsApi,
  *
  * @param api The specified API.
  * @param commands The specified recipient commands.
- * @param continuousCacheOverrideInfo Rules for when to override API caching
- *                                    when re-evaluating a TRL string in
- *                                    continuous mode.
+ * @param refreshOverrideCache Rules for when to override API caching when
+ *                             re-evaluating a TRL string in continuous mode.
  *
  * @return A promise returning the list of nations that the specified commands
  *         evaluate to.
  */
-function evaluateGroup(api: NsApi,
-                       commands: RecipientCommand[],
-                       continuousCacheOverrideInfo: CacheOverrideInfo): Promise<string[]>
+async function evaluateGroup(api: NsApi,
+                             commands: RecipientCommand[],
+                             refreshOverrideCache: RefreshOverrideCache): Promise<string[]>
 {
-    let promise = Promise.resolve([]);
+    let nations: string[] = [];
     for (const command of commands) {
-        promise = promise.then(nations => evaluateCommand(
-            api, command, nations, continuousCacheOverrideInfo));
+        nations = await evaluateCommand(api, command, nations,
+                                        refreshOverrideCache);
     }
-    return promise;
+    return nations;
 }
 
 /**
@@ -344,24 +340,23 @@ function evaluateGroup(api: NsApi,
  * @param api The specified API.
  * @param command The specified recipient command.
  * @param nations The list of nations in the current group.
- * @param continuousCacheOverrideInfo Rules for when to override API caching
- *                                    when re-evaluating a TRL string in
- *                                    continuous mode.
+ * @param refreshOverrideCache Rules for when to override API caching when
+ *                             re-evaluating a TRL string in continuous mode.
  *
  * @return A promise returning a new list of nations for the current group.
  */
-function evaluateCommand(api: NsApi,
-                         command: RecipientCommand,
-                         nations: string[],
-                         continuousCacheOverrideInfo: CacheOverrideInfo): Promise<string[]>
+async function evaluateCommand(api: NsApi,
+                               command: RecipientCommand,
+                               nations: string[],
+                               refreshOverrideCache: RefreshOverrideCache): Promise<string[]>
 {
     if (command.recipients instanceof Array) {
-        return evaluateGroup(api, command.recipients,
-                             continuousCacheOverrideInfo).then(
-            newNations => evaluateAction(command.action, nations, newNations));
+        const newNations = await evaluateGroup(api, command.recipients,
+                                               refreshOverrideCache);
+        return evaluateAction(command.action, nations, newNations);
     } else {
-        return evaluatePrimitive(api, command.recipients, command.action,
-                                 nations, continuousCacheOverrideInfo);
+        return await evaluatePrimitive(api, command.recipients, command.action,
+                                       nations, refreshOverrideCache);
     }
 }
 
@@ -373,145 +368,127 @@ function evaluateCommand(api: NsApi,
  * @param primitive The specified primitive.
  * @param action The specified action.
  * @param nations The nations associated with the current group.
- * @param continuousCacheOverrideInfo Rules for when to override API caching
- *                                    when re-evaluating a TRL string in
- *                                    continuous mode.
+ * @param refreshOverrideCache Rules for when to override API caching when
+ *                             re-evaluating a TRL string in continuous mode.
  *
  * @return A promise returning a new list of nations for the current group.
  */
-function evaluatePrimitive(api: NsApi,
-                           primitive: RecipientPrimitive,
-                           action: Action,
-                           nations: string[],
-                           continuousCacheOverrideInfo: CacheOverrideInfo): Promise<string[]>
+async function evaluatePrimitive(api: NsApi,
+                                 primitive: RecipientPrimitive,
+                                 action: Action,
+                                 nations: string[],
+                                 refreshOverrideCache: RefreshOverrideCache): Promise<string[]>
 {
     if (primitive.category === "nations" || primitive.category === "regions"
         || primitive.category === "tags" || primitive.category === "wa"
         || primitive.category === "new" || primitive.category === "refounded")
     {
-        let promise: Promise<[string]>;
+        let newNations: string[] = [];
         switch (primitive.category) {
             case "nations":
-                promise = getNations(primitive.args);
+                newNations = await getNations(primitive.args);
                 break;
             case "regions":
-                promise = getRegions(
+                newNations = await getRegions(
                     api, primitive.args,
-                    continuousCacheOverrideInfo.overrideRegions);
+                    refreshOverrideCache.overrideRegions);
                 break;
             case "tags":
-                promise =
-                    getTags(api, primitive.args,
-                            continuousCacheOverrideInfo.overrideTags);
+                newNations = await getTags(api, primitive.args,
+                                           refreshOverrideCache.overrideTags);
                 break;
             case "wa":
                 if (primitive.args[0] === "members") {
-                    promise =
-                        getWorldAssemblyMembers(
-                            api, continuousCacheOverrideInfo.overrideWa);
+                    newNations = await getWorldAssemblyMembers(
+                        api, refreshOverrideCache.overrideWa);
                 } else {
-                    promise = getWorldAssemblyDelegates(
-                        api,
-                        continuousCacheOverrideInfo.overrideWa);
+                    newNations = await getWorldAssemblyDelegates(
+                        api, refreshOverrideCache.overrideWa);
                 }
                 break;
             case "new":
             {
                 const count = parseInt(primitive.args[0]);
-                promise = getNewNations(
-                    api, count, continuousCacheOverrideInfo.overrideNew);
+                newNations = await getNewNations(
+                    api, count, refreshOverrideCache.overrideNew);
                 break;
             }
             case "refounded":
             {
                 const count = parseInt(primitive.args[0]);
-                promise = getRefoundedNations(
+                newNations = await getRefoundedNations(
                     api, count,
-                    continuousCacheOverrideInfo.overrideRefounded);
+                    refreshOverrideCache.overrideRefounded);
                 break;
             }
             default:
                 throw new Error("Unexpected category");
         }
-        return promise.then(newNations => evaluateAction(action, nations,
-                                                         newNations));
+        return evaluateAction(action, nations, newNations);
     } else {
-        let promise: Promise<string[]>;
+        let newNations: string[] = [];
         switch (primitive.category) {
             case "categories":
-                promise = Promise.all(
-                    nations.map(
-                        nation => getCategory(
+                for (const nation of nations) {
+                    try {
+                        const category = await getCategory(
                             api, nation,
-                            continuousCacheOverrideInfo.overrideCategories)
-                            .then(category => {
-                                if (primitive.args.indexOf(category) !== -1) {
-                                    return nation;
-                                } else {
-                                    return "";
-                                }
-                            })
-                            .catch(err => {
-                                if (err instanceof ApiError) {
-                                    if (err.responseText
-                                        && err.responseText
-                                              .indexOf("Unknown nation \""
-                                                       + nation + "\"."))
-                                    {
-                                        return "";
-                                    }
-                                }
-                                throw err;
-                            })
-                    )
-                );
+                            refreshOverrideCache.overrideCategories);
+                        if (primitive.args.indexOf(category) !== -1) {
+                            newNations.push(nation);
+                        }
+                    } catch (err) {
+                        if (err instanceof ApiError) {
+                            if (err.responseText
+                                && err.responseText
+                                      .indexOf("Unknown nation \""
+                                               + nation + "\"."))
+                            {
+                                continue;
+                            }
+                        }
+                        throw err;
+                    }
+                }
                 break;
             case "census":
-                promise = Promise.all(
-                    nations.map(
-                        nation => getCensusScore(
+                for (const nation of nations) {
+                    try {
+                        const score = await getCensusScore(
                             api, nation, primitive.args[0],
-                            continuousCacheOverrideInfo.overrideCensus)
-                            .then(score => {
-                                if (score >= parseFloat(primitive.args[1])
-                                    && score <= parseFloat(
-                                        primitive.args[2]))
-                                {
-                                    return nation;
-                                } else {
-                                    return "";
-                                }
-                            })
-                            .catch(err => {
-                                if (err instanceof ApiError) {
-                                    if (err.responseText
-                                        && err.responseText
-                                              .indexOf("Unknown nation \""
-                                                       + nation + "\"."))
-                                    {
-                                        return "";
-                                    }
-                                }
-                                throw err;
-                            })
-                    )
-                );
+                            refreshOverrideCache.overrideCensus);
+                        if (score >= parseFloat(primitive.args[1])
+                            && score <= parseFloat(
+                                primitive.args[2]))
+                        {
+                            newNations.push(nation);
+                        }
+                    } catch (err) {
+                        if (err instanceof ApiError) {
+                            if (err.responseText
+                                && err.responseText
+                                      .indexOf("Unknown nation \""
+                                               + nation + "\"."))
+                            {
+                                continue;
+                            }
+                        }
+                        throw err;
+                    }
+                }
                 break;
             default:
                 throw new Error("Unexpected category");
         }
-        return promise.then(newNations => {
-            newNations = newNations.filter(nation => nation !== "");
-            switch (action) {
-                case Action.Remove:
-                    return nations.filter(
-                        item => newNations.indexOf(item) === -1);
-                case Action.Limit:
-                    return newNations;
-                default:
-                    throw new Error("Unexpected action");
-            }
-        });
+        switch (action) {
+            case Action.Remove:
+                return nations.filter(
+                    item => newNations.indexOf(item) === -1);
+            case Action.Limit:
+                return newNations;
+            default:
+                throw new Error("Unexpected action");
+        }
     }
 }
 
@@ -551,34 +528,33 @@ function evaluateAction(action: Action,
  *
  * @return A promise returning the list of nations.
  */
-function getNations(args: string[]): Promise<string[]> {
-    return Promise.resolve(args.map(toId));
+async function getNations(args: string[]): Promise<string[]> {
+    return args.map(toId);
 }
 
 /**
  * Gets the nations in a list of regions using the specified API.
  *
  * @param api The specified API.
- * @param args The list of regions.
+ * @param regions The list of regions.
  * @param overrideCache Whether or not to override the cache for this request.
  *
  * @return A promise returning the list of nations.
  */
-function getRegions(api: NsApi, args: string[],
-                    overrideCache: boolean = false): Promise<string[]>
+async function getRegions(api: NsApi, regions: string[],
+                          overrideCache: boolean = false): Promise<string[]>
 {
-    return Promise.all(
-        args.map(region => api.regionRequest(region, ["nations"], undefined,
-                                             overrideCache)
-                              .then(data => data["nations"].split(":")
-                                                           .map(toId))))
-                  .then(nationsInRegions => {
-                      let nations: string[] = [];
-                      for (const nationsInRegion of nationsInRegions) {
-                          nations = nations.concat(nationsInRegion);
-                      }
-                      return nations;
-                  });
+    let nations: string[] = [];
+    for (const region of regions) {
+        const data = await api.regionRequest(region, ["nations"],
+                                             undefined,
+                                             overrideCache);
+        const nationsInRegions = data["nations"].split(":").map(toId);
+        for (const nationsInRegion of nationsInRegions) {
+            nations = nations.concat(nationsInRegion);
+        }
+    }
+    return nations;
 }
 
 /**
@@ -591,13 +567,15 @@ function getRegions(api: NsApi, args: string[],
  *
  * @return A promise returning the list of nations.
  */
-function getTags(api: NsApi, args: string[],
-                 overrideCache: boolean = false): Promise<string[]>
+async function getTags(api: NsApi,
+                       args: string[],
+                       overrideCache: boolean = false): Promise<string[]>
 {
-    return api.worldRequest(["regionsbytag"],
-                            {tags: args.join(",")}, overrideCache)
-              .then(data => data["regions"].split(","))
-              .then(regions => getRegions(api, regions, overrideCache));
+    const data = await api.worldRequest(["regionsbytag"],
+                                        {tags: args.join(",")},
+                                        overrideCache);
+    const regions = data["regions"].split(",");
+    return getRegions(api, regions, overrideCache);
 }
 
 /**
@@ -608,16 +586,16 @@ function getTags(api: NsApi, args: string[],
  *
  * @return A promise returning the list of nations.
  */
-function getWorldAssemblyMembers(api: NsApi,
-                                 overrideCache: boolean = false): Promise<string[]>
+async function getWorldAssemblyMembers(api: NsApi,
+                                       overrideCache: boolean = false): Promise<string[]>
 {
-    return api.worldAssemblyRequest(
+    const data = await api.worldAssemblyRequest(
         WorldAssemblyCouncil.GeneralAssembly,
         ["members"],
         undefined,
         overrideCache
-    ).then(data => data["members"].split(",")
-                                  .map(toId));
+    );
+    return data["members"].split(",").map(toId);
 }
 
 /**
@@ -628,16 +606,16 @@ function getWorldAssemblyMembers(api: NsApi,
  *
  * @return A promise returning the list of nations.
  */
-function getWorldAssemblyDelegates(api: NsApi,
-                                   overrideCache: boolean = false): Promise<string[]>
+async function getWorldAssemblyDelegates(api: NsApi,
+                                         overrideCache: boolean = false): Promise<string[]>
 {
-    return api.worldAssemblyRequest(
+    const data = await api.worldAssemblyRequest(
         WorldAssemblyCouncil.GeneralAssembly,
         ["delegates"],
         undefined,
         overrideCache
-    ).then(data => data["delegates"].split(",")
-                                    .map(toId));
+    );
+    return data["delegates"].split(",").map(toId)
 }
 
 /**
@@ -649,33 +627,33 @@ function getWorldAssemblyDelegates(api: NsApi,
  *
  * @return A promise returning the list of nations.
  */
-function getNewNations(api: NsApi, count: number,
-                       overrideCache: boolean = false): Promise<string[]> {
-    return api.worldRequest(["happenings"],
-                            {filter: "founding", limit: String(count)},
-                            overrideCache)
-              .then(data => {
-                  let event = data["happenings"]["event"];
-                  if (!(event instanceof Array)) {
-                      event = [event];
-                  }
-                  return event.filter(
-                      (event: any) => event["text"].indexOf(
-                          "was founded") !== -1)
-              })
-              .then(data => data.map(
-                  (event: any) => {
-                      const start = event["text"].indexOf("@@") + 2;
-                      if (start !== -1) {
-                          const end = start + event["text"].substring(start)
-                                                           .indexOf("@@");
-                          if (end !== -1) {
-                              return event["text"].substring(start, end);
-                          }
-                      }
-                      return "";
-                  }))
-              .then(data => data.filter((nation: string) => nation !== ""));
+async function getNewNations(api: NsApi,
+                             count: number,
+                             overrideCache: boolean = false): Promise<string[]>
+{
+    const data = await api.worldRequest(
+        ["happenings"],
+        {filter: "founding", limit: String(count)},
+        overrideCache);
+
+    let event = data["happenings"]["event"];
+    if (!(event instanceof Array)) {
+        event = [event];
+    }
+    return event
+        .filter((event: any) => event["text"].indexOf("was founded") !== -1)
+        .map((event: any) => {
+            const start = event["text"].indexOf("@@") + 2;
+            if (start !== -1) {
+                const end = start + event["text"].substring(start)
+                                                 .indexOf("@@");
+                if (end !== -1) {
+                    return event["text"].substring(start, end);
+                }
+            }
+            return "";
+        })
+        .filter((nation: string) => nation !== "");
 }
 
 /**
@@ -687,34 +665,34 @@ function getNewNations(api: NsApi, count: number,
  *
  * @return A promise returning the list of nations.
  */
-function getRefoundedNations(api: NsApi, count: number,
-                             overrideCache: boolean = false): Promise<string[]>
+async function getRefoundedNations(api: NsApi,
+                                   count: number,
+                                   overrideCache: boolean = false): Promise<string[]>
 {
-    return api.worldRequest(["happenings"],
-                            {filter: "founding", limit: String(count)},
-                            overrideCache)
-              .then(data => {
-                  let event = data["happenings"]["event"];
-                  if (!(event instanceof Array)) {
-                      event = [event];
-                  }
-                  return event.filter(
-                      (event: any) => event["text"].indexOf(
-                          "was refounded") !== -1)
-              })
-              .then(data => data.map(
-                  (event: any) => {
-                      const start = event["text"].indexOf("@@") + 2;
-                      if (start !== -1) {
-                          const end = start + event["text"].substring(start)
-                                                           .indexOf("@@");
-                          if (end !== -1) {
-                              return event["text"].substring(start, end);
-                          }
-                      }
-                      return "";
-                  }))
-              .then(data => data.filter((nation: string) => nation !== ""));
+    const data = await api.worldRequest(["happenings"],
+                                        {
+                                            filter: "founding",
+                                            limit: String(count)
+                                        },
+                                        overrideCache);
+    let event = data["happenings"]["event"];
+    if (!(event instanceof Array)) {
+        event = [event];
+    }
+    return event
+        .filter((event: any) => event["text"].indexOf("was refounded") !== -1)
+        .map((event: any) => {
+            const start = event["text"].indexOf("@@") + 2;
+            if (start !== -1) {
+                const end = start + event["text"].substring(start)
+                                                 .indexOf("@@");
+                if (end !== -1) {
+                    return event["text"].substring(start, end);
+                }
+            }
+            return "";
+        })
+        .filter((nation: string) => nation !== "");
 }
 
 /**
@@ -726,11 +704,15 @@ function getRefoundedNations(api: NsApi, count: number,
  *
  * @return A promise returning the list of nations.
  */
-function getCategory(api: NsApi, nation: string,
-                     overrideCache: boolean = false): Promise<string>
+async function getCategory(api: NsApi,
+                           nation: string,
+                           overrideCache: boolean = false): Promise<string>
 {
-    return api.nationRequest(nation, ["category"], undefined, overrideCache)
-              .then(data => data["category"]);
+    const data = await api.nationRequest(nation, ["category"],
+                                         {},
+                                         undefined,
+                                         overrideCache);
+    return data["category"];
 }
 
 /**
@@ -744,13 +726,16 @@ function getCategory(api: NsApi, nation: string,
  *
  * @return A promise returning the list of nations.
  */
-function getCensusScore(api: NsApi, nation: string,
-                        censusId: string,
-                        overrideCache: boolean = false): Promise<number>
+async function getCensusScore(api: NsApi,
+                              nation: string,
+                              censusId: string,
+                              overrideCache: boolean = false): Promise<number>
 {
-    return api.nationRequest(nation, ["census"], {scale: censusId},
-                             overrideCache)
-              .then(data => data["census"]["scale"]["score"]);
+    const data = await api.nationRequest(nation, ["census"],
+                                         {scale: censusId},
+                                         undefined,
+                                         overrideCache);
+    return data["census"]["scale"]["score"];
 }
 
 /**
@@ -762,5 +747,8 @@ function getCensusScore(api: NsApi, nation: string,
  * @return The converted nation name.
  */
 function toId(nation: string) {
-    return nation.replace("_", " ").trim().toLowerCase().replace(" ", "_");
+    return nation.replace("_", " ")
+                 .trim()
+                 .toLowerCase()
+                 .replace(" ", "_");
 }
