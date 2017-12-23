@@ -518,6 +518,7 @@ export class NsTgApi {
                 }
             }
             job.status.isComplete = true;
+            this.onJobComplete(job.id);
         }
     }
 

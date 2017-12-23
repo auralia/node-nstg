@@ -1,6 +1,6 @@
 {
   "name": "nstg",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Sends telegrams to a list of NationStates nations defined using a powerful query language called Telegram Recipient Language",
   "keywords": [
     "NationStates",
