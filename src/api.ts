@@ -186,6 +186,7 @@ export class NsTgApi {
     private _onTgSuccess: (recipient: Recipient) => void;
     private _onTgFailure: (recipient: Recipient) => void;
     private _onJobComplete: (jobId: string) => void;
+    private _onNewRecipients: (jobId: string, recipients: Recipient[]) => void;
 
     private readonly _tgJobs: { [id: string]: TelegramJob };
     private readonly _tgQueue: Recipient[];
@@ -227,6 +228,9 @@ export class NsTgApi {
             /* Do nothing. */
         };
         this._onJobComplete = () => {
+            /* Do nothing. */
+        };
+        this._onNewRecipients = () => {
             /* Do nothing. */
         };
 
@@ -278,6 +282,7 @@ export class NsTgApi {
                             job.recipients.push(recipient);
                             this._tgQueue.push(recipient);
                         }
+                        this._onNewRecipients(job.id, recipients);
                     });
             }
         }, this.refreshRateSecs * 1000);
@@ -319,6 +324,23 @@ export class NsTgApi {
      */
     set onJobStart(onStart: (jobId: string) => void) {
         this._onJobStart = onStart;
+    }
+
+    /**
+     * Gets the event handler called when new recipients are added to a job.
+     */
+    get onNewRecipients() {
+        return this._onNewRecipients;
+    }
+
+    /**
+     * Sets the event handler called when new recipients are added to a job.
+     *
+     * @param onNewRecipients The new event handler.
+     */
+    set onNewRecipients(onNewRecipients: (jobId: string,
+                                          recipients: Recipient[]) => void) {
+        this._onNewRecipients = onNewRecipients;
     }
 
     /**

@@ -1,3 +1,7 @@
+## 0.2.1 ##
+
+* Add new event handler
+
 ## 0.2.0 ##
 
 * Bug fixes
