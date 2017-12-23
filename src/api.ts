@@ -282,7 +282,9 @@ export class NsTgApi {
                             job.recipients.push(recipient);
                             this._tgQueue.push(recipient);
                         }
-                        this._onNewRecipients(job.id, recipients);
+                        if (recipients.length > 0) {
+                            this._onNewRecipients(job.id, recipients);
+                        }
                     });
             }
         }, this.refreshRateSecs * 1000);
