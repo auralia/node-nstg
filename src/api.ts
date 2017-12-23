@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {getRecipients, ParseError} from "./trl";
+import {getRecipients, ParseError, validateTrl} from "./trl";
 import * as clone from "clone";
 import {NsApi, TelegramType} from "nsapi";
 
@@ -517,6 +517,15 @@ export class NsTgApi {
             }
             job.status.isComplete = true;
         }
+    }
+
+    /**
+     * Throws an error if the specified TRL string is not valid.
+     *
+     * @param trl A TRL string.
+     */
+    public static validateTrl(trl: string): void {
+        return validateTrl(trl);
     }
 
     /**

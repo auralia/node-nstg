@@ -146,6 +146,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="nstgapi.html#sendtelegram" class="tsd-kind-icon">send<wbr>Telegram</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="nstgapi.html#sendtelegramwithcallbacks" class="tsd-kind-icon">send<wbr>Telegram<wbr>With<wbr>Callbacks</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="nstgapi.html#sendtelegramstrl" class="tsd-kind-icon">send<wbr>Telegrams<wbr>Trl</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="nstgapi.html#validatetrl" class="tsd-kind-icon">validate<wbr>Trl</a></li>
 							</ul>
 						</section>
 					</div>
@@ -1232,7 +1233,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:596</li>
+									<li>Defined in api.ts:605</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1291,7 +1292,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:530</li>
+									<li>Defined in api.ts:539</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1359,7 +1360,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:726</li>
+									<li>Defined in api.ts:735</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1391,7 +1392,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:707</li>
+									<li>Defined in api.ts:716</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1429,7 +1430,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:688</li>
+									<li>Defined in api.ts:697</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1460,7 +1461,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:643</li>
+									<li>Defined in api.ts:652</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1491,7 +1492,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:632</li>
+									<li>Defined in api.ts:641</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1522,7 +1523,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.ts:553</li>
+									<li>Defined in api.ts:562</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1573,6 +1574,37 @@
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A promise returning the ID of the telegram job associated with
 							this request.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="validatetrl" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> validate<wbr>Trl</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">validate<wbr>Trl<span class="tsd-signature-symbol">(</span>trl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:527</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Throws an error if the specified TRL string is not valid.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>trl: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A TRL string.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -1722,6 +1754,9 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="nstgapi.html#sendtelegramstrl" class="tsd-kind-icon">send<wbr>Telegrams<wbr>Trl</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="nstgapi.html#validatetrl" class="tsd-kind-icon">validate<wbr>Trl</a>
+							</li>
 						</ul>
 					</li>
 				</ul>
@@ -1815,6 +1850,9 @@
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="../globals.html#toid" class="tsd-kind-icon">to<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#validatetrl" class="tsd-kind-icon">validate<wbr>Trl</a>
 					</li>
 				</ul>
 			</nav>

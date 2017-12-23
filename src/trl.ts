@@ -136,6 +136,13 @@ interface ParseContext {
 }
 
 /**
+ * Throws an error if the specified TRL string is not valid.
+ */
+export function validateTrl(trl: string): void {
+    parseGroup({s: "(" + trl.trim() + ")"}, []);
+}
+
+/**
  * Parses the specified TRL string into a list of recipient commands.
  */
 function parseTrl(trl: string): RecipientCommand[] {

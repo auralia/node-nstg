@@ -1,3 +1,7 @@
+## 0.2.2 ##
+
+* Add validate TRL function
+
 ## 0.2.1 ##
 
 * Add new event handler
