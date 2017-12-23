@@ -587,6 +587,8 @@ export class NsTgApi {
         for (const recipient of job.recipients) {
             this._tgQueue.push(recipient);
         }
+        this.onJobStart(job.id);
+        job.status.isStarted = true;
         return job.id;
     }
 
@@ -655,10 +657,6 @@ export class NsTgApi {
         const job = this.getJob(recipient.jobId);
         if (typeof job === "undefined") {
             throw new Error("Job does not exist");
-        }
-        if (!job.status.isStarted) {
-            job.status.isStarted = true;
-            this.onJobStart(job.id);
         }
 
         if (job.tgInfo.skipIfRecruitBlocked) {

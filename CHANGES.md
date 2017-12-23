@@ -1,3 +1,7 @@
+## 0.2.4 ##
+
+* Call onJobStart earlier
+
 ## 0.2.3 ##
 
 * Bug fixes
